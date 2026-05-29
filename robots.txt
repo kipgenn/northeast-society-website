@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kipgenn.github.io/northeast-society-website/sitemap.xml
