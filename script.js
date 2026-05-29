@@ -3,7 +3,7 @@
     var loaderHTML = `
         <div id="page-loader">
             <div class="loader-inner">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo" class="loader-logo">
+                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
                 <div class="loader-wordmark">
                     <span class="loader-title">NORTHEAST SOCIETY</span>
                     <span class="loader-sub">IIT Delhi</span>

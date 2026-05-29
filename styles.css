@@ -765,26 +765,23 @@ footer a {
 }
 
 @media (max-width: 48rem) {
-    header {
-        flex-direction: column; 
-        padding: 1.5rem 0.5rem; 
-        gap: 1.5rem; 
-    }
-    .g1 {
-        flex-direction: column; 
-        text-align: center;
-        gap: 0.8rem;
-    }
-    .g1 img {
-        height: 5.5rem; 
-    }
-    .g1 h1 {
-        font-size: 1.8rem; 
-        line-height: 1.1;
-    }
-    .g1 h2 {
-        font-size: 1rem;
-    }
+header {
+    flex-direction: row;
+    padding: 0.8rem 1rem;
+}
+.g1 {
+    flex-direction: row;
+    text-align: left;
+}
+.g1 img {
+    height: 3.5rem;
+}
+.g1 h1 {
+    font-size: 1.1rem;
+}
+.g1 h2 {
+    font-size: 0.8rem;
+}
     .marquee-viewport {
         padding-left: calc(50% - 9rem); 
         mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
@@ -921,4 +918,3 @@ footer a {
     100% { width: 100%; }
 }
 
-/* ===== END PAGE LOADER ===== */
