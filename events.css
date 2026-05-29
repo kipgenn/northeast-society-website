@@ -1,0 +1,118 @@
+.events-hero {
+    background: linear-gradient(135deg, var(--text-main), #1e293b);
+    color: white;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+}
+
+.events-hero h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.events-hero p {
+    color: #cbd5e1;
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.report-container {
+    max-width: 55rem;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+}
+
+.event-report-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 4rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    margin-bottom: 4rem;
+    border: 1px solid #f1f5f9;
+}
+
+.event-header {
+    border-bottom: 2px solid #f8fafc;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+}
+
+.event-title {
+    font-size: 3rem;
+    color: var(--text-main);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 0.9rem;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.meta-label {
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+}
+
+.meta-value {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.event-body h4 {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin: 2.5rem 0 1rem;
+    font-weight: 800;
+}
+
+.event-body p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
+
+.event-body ul {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.event-body li {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 48rem) {
+    .event-report-card {
+        padding: 2rem;
+    }
+    .event-title {
+        font-size: 2.2rem;
+    }
+    .event-meta {
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+}

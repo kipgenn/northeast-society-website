@@ -1,0 +1,185 @@
+.alumni-hero {
+    background: linear-gradient(135deg, #0f172a, var(--text-main));
+    color: white;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+}
+
+.alumni-hero h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.alumni-hero p {
+    color: #cbd5e1;
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: center;
+    gap: 2rem;
+    max-width: 85rem;
+    margin: -4rem auto 6rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.alumni-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.alumni-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(26, 35, 126, 0.1);
+}
+
+.alumni-img {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+.alumni-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.alumni-card:hover .alumni-img img {
+    transform: scale(1.05);
+}
+
+.alumni-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.alumni-header {
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.8rem;
+}
+
+.alumni-header h3 {
+    font-size: 1.6rem;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+    font-weight: 800;
+}
+
+.alumni-header .degree {
+    color: #64748b;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.destination-tag {
+    display: inline-block;
+    background: rgba(26, 35, 126, 0.08);
+    color: var(--accent);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.alumni-quote {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #334155;
+    font-style: italic;
+    padding-left: 0.8rem;
+    border-left: 2px solid var(--accent-vibrant);
+}
+
+@media (max-width: 64rem) {
+    .alumni-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: -2rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .alumni-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.year-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: -2rem auto 4rem;
+    position: relative;
+    z-index: 20;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.filter-btn {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    color: #64748b;
+    padding: 0.8rem 2rem;
+    border-radius: 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 10px 20px rgba(26, 35, 126, 0.2);
+}
+
+.batch-section {
+    display: none;
+    animation: fadeInTab 0.5s ease forwards;
+}
+
+.batch-section.active {
+    display: block;
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
