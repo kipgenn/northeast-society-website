@@ -1,4 +1,3 @@
-
 // 1. INITIALIZATION & LOADER
 (function () {
     var loaderHTML = `
@@ -83,20 +82,28 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Batch Filters
-    const filterBtns = document.querySelectorAll('.filter-btn');
+// Batch Timeline Logic
+    const timelineBtns = document.querySelectorAll('.timeline-year');
     const batchSections = document.querySelectorAll('.batch-section');
-    if (filterBtns.length > 0 && batchSections.length > 0) {
-        filterBtns.forEach(btn => {
+    
+    if (timelineBtns.length > 0 && batchSections.length > 0) {
+        timelineBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                // Remove active states
+                timelineBtns.forEach(b => b.classList.remove('active'));
                 batchSections.forEach(s => s.classList.remove('active'));
+                
+                // Set new active state
                 this.classList.add('active');
                 const targetYear = this.getAttribute('data-year');
                 const targetSection = document.getElementById('batch-' + targetYear);
+                
                 if (targetSection) {
                     targetSection.classList.add('active');
                 }
+                
+                // Center the clicked year in the track
+                this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
         });
     }
@@ -269,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.addEventListener('mouseover', (e) => {
-            const target = e.target.closest('a, button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
+            // Added :not(.bento-card) so the magnetic cursor ignores the grid
+            const target = e.target.closest('a:not(.bento-card), button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
             if (target) {
                 cursor.classList.add('hover-image');
                 activeTarget = target;
@@ -278,7 +286,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.addEventListener('mouseout', (e) => {
-            const target = e.target.closest('a, button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
+            // Added :not(.bento-card) here as well
+            const target = e.target.closest('a:not(.bento-card), button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
             if (target) {
                 cursor.classList.remove('hover-image');
                 activeTarget = null;
@@ -368,51 +377,194 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('header');
-    const heroSection = document.querySelector('.hero-fullscreen');
-    if (header && heroSection) {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-        const heroObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    header.classList.add('header-scrolled');
-                } else {
-                    header.classList.remove('header-scrolled');
+/* /* ==========================================
+   1. FOOLPROOF GLOBAL HEADER INJECTION
+   ========================================== */
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. The perfect HTML for your header
+    const globalHeaderHTML = `
+        <header id="main-nav">
+            <div class="g1">
+                <a href="index.html">
+                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
+                    <div>
+                        <h1 style="color: #ffffff !important;">Northeast Society</h1>
+                        <h2 style="color: #cbd5e1 !important;">IIT Delhi</h2>
+                    </div>
+                </a>
+            </div>
+        </header>
+    `;
+
+    // 2. Inject it automatically at the start of the body
+    document.body.insertAdjacentHTML('afterbegin', globalHeaderHTML);
+
+    // 3. The universal scroll logic
+    const headerElement = document.getElementById('main-nav');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 150) {
+            headerElement.classList.add('header-scrolled');
+        } else {
+            headerElement.classList.remove('header-scrolled');
+        }
+    });
+});
+
+// Dynamic Text Hero Scroll Animation
+window.addEventListener('scroll', () => {
+    const dynamicText = document.querySelector('.dynamic-text-container');
+    
+    if (dynamicText) {
+        const scrollY = window.scrollY;
+        
+        const opacity = Math.max(0, 1 - (scrollY / 500));
+        
+        const translateY = scrollY * 0.35; 
+        const scale = Math.max(0.85, 1 - (scrollY / 1000));
+
+
+        dynamicText.style.transform = `translateY(${translateY}px) scale(${scale})`;
+        dynamicText.style.opacity = opacity;
+    }
+});
+
+window.addEventListener('scroll', () => {
+    const dynamicText = document.querySelector('.dynamic-text-container');
+    
+    if (dynamicText) {
+        const scrollY = window.scrollY;
+        const opacity = Math.max(0, 1 - (scrollY / 500));
+        const translateY = scrollY * 0.35; 
+        const scale = Math.max(0.85, 1 - (scrollY / 1000));
+
+        dynamicText.style.transform = `translateY(${translateY}px) scale(${scale})`;
+        dynamicText.style.opacity = opacity;
+    }
+});
+
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            scrollObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+});
+
+document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    scrollObserver.observe(el);
+});
+
+/* ==========================================
+   EVENTS PAGE: SIDEBAR TABS & PARALLAX
+   ========================================== */
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- 1. SIDEBAR TAB SWITCHER ---
+    const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+    const batchSections = document.querySelectorAll('.batch-section');
+
+    if (sidebarBtns.length > 0) {
+        sidebarBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sidebarBtns.forEach(b => b.classList.remove('active'));
+                batchSections.forEach(s => s.classList.remove('active'));
+
+                btn.classList.add('active');
+
+                const targetYear = btn.getAttribute('data-year'); 
+                const targetSection = document.getElementById('batch-' + targetYear);
+                
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    
+                    // Optional: Smoothly scroll to top of the report card on mobile
+                    if (window.innerWidth <= 1024) {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
-        }, observerOptions);
-        heroObserver.observe(heroSection);
+        });
     }
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const alumniHero = document.querySelector('.alumni-hero');
-    const heroTitle = document.querySelector('.alumni-hero h1');
-    const heroDesc = document.querySelector('.alumni-hero p');
 
-    if (alumniHero && heroTitle && heroDesc) {
+    // --- 2. HERO PARALLAX SCROLL ---
+    const eventsHero = document.querySelector('.events-hero');
+    
+    if (eventsHero) {
+        const heading = eventsHero.querySelector('h1');
+        const paragraph = eventsHero.querySelector('p');
+
         window.addEventListener('scroll', () => {
-            let scrollY = window.scrollY;
+            const scrolled = window.scrollY;
             
+            if (scrolled < window.innerHeight && heading && paragraph) {
+                if (scrolled > 5) {
+                    heading.style.animation = 'none';
+                    paragraph.style.animation = 'none';
+                }
 
-            if (scrollY <= alumniHero.offsetHeight) {
+                const opacity = Math.max(0, 1 - (scrolled / (window.innerHeight * 0.4)));
+                const scale = Math.max(0.85, 1 - (scrolled * 0.0004));
+                const yMove = scrolled * 0.5;
 
-                let yOffsetTitle = scrollY * 0.4; 
-                let yOffsetDesc = scrollY * 0.3; 
+                heading.style.opacity = opacity;
+                heading.style.transform = `translateY(${yMove}px) scale(${scale})`;
                 
-
-                let fade = 1 - (scrollY / 250); 
-
-                heroTitle.style.transform = `translate3d(0, ${yOffsetTitle}px, 0)`;
-                heroTitle.style.opacity = Math.max(0, fade);
-
-                heroDesc.style.transform = `translate3d(0, ${yOffsetDesc}px, 0)`;
-                heroDesc.style.opacity = Math.max(0, fade);
+                paragraph.style.opacity = opacity;
+                paragraph.style.transform = `translateY(${yMove}px) scale(${scale})`;
             }
-        }, { passive: true });
+        });
     }
 });
+const dropdown = document.getElementById('gallery-year-dropdown');
+const dropdownBtn = document.getElementById('dropdown-btn');
+const dropdownItems = document.querySelectorAll('.dropdown-item');
+const batchSections = document.querySelectorAll('.batch-section');
+
+if (dropdown && dropdownBtn) {
+    dropdownBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('open');
+        }
+    });
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            dropdownItems.forEach(i => i.classList.remove('active'));
+            batchSections.forEach(s => s.classList.remove('active'));
+            
+            this.classList.add('active');
+            dropdownBtn.innerText = this.innerText;
+            
+            const targetCategory = this.getAttribute('data-year');
+            const targetSection = document.getElementById('batch-' + targetCategory);
+            
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            dropdown.classList.remove('open');
+        });
+    });
+}
+const mainHeader = document.querySelector('header');
+
+if (mainHeader) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            mainHeader.classList.add('scrolled');
+        } else {
+            mainHeader.classList.remove('scrolled');
+        }
+    });
+}

@@ -3,52 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://res.cloudinary.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
-
-    <title>Northeast Society, IIT Delhi</title>
-    <meta name="description" content="The Northeast Society acts as a home away from home for students at IIT Delhi. We bridge the gap between the Eight Sister States and campus life.">
-    <meta name="author" content="Northeast Society, IIT Delhi">
+    <title>Northeast Society, IIT Delhi - Alumni Directory</title>
+    <meta name="description" content="Recognizing the graduating seniors of the Northeast Society, IIT Delhi.">
     <meta name="theme-color" content="#1A237E">
-
-    <meta property="og:title" content="Northeast Society, IIT Delhi">
-    <meta property="og:description" content="This is the official website for the Northeast Society, IITD. The Northeast Society acts as a home away from home for students at IIT Delhi. We bridge the gap between the Eight Sister States and campus life.">
-    <meta property="og:image" content="https://res.cloudinary.com/dniy8inc1/image/upload/w_1200,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg">
-    <meta property="og:url" content="https://kipgenn.github.io/northeast-society-website/">
-    <meta property="og:type" content="website">
-
+    
     <link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dniy8inc1/image/upload/w_64,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg">
     <link rel="apple-touch-icon" href="https://res.cloudinary.com/dniy8inc1/image/upload/w_180,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=10.0">
-    <link rel="stylesheet" href="alumni.css">
+    <link rel="stylesheet" href="styles.css?v=11.0">
+    <link rel="stylesheet" href="alumni.css?v=11.0">
 </head>
 <body>
 
-    <header>
+    <header id="main-nav" class="floating-header">
         <div class="g1">
-            <a href="index.html" style="display: flex; align-items: center; gap: 1rem; text-decoration: none;">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
+            <a href="index.html">
+                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo">
                 <div>
-                    <h1 style="color: var(--text-main);">Northeast Society</h1>
-                    <h2 style="color: #666;">IIT Delhi</h2>
+                    <h1>Northeast Society</h1>
+                    <h2>IIT Delhi</h2>
                 </div>
             </a>
         </div>
     </header>
 
     <main>
-
-        <section class="alumni-hero">
-            <h1>Alumni Directory</h1>
-            <p>Recognizing the graduating seniors of the Northeast Society. We wish you the best as you transition from IIT Delhi to your future careers.</p>
+        <section class="hero-text-fullscreen" style="background: linear-gradient(to bottom, #ffffff, #f8fafc); border: none;">
+            <div class="dynamic-text-container">
+                <h1 style="text-transform: uppercase;">ALUMNI <br> DIRECTORY</h1>
+                <p>Recognizing the graduating seniors of the Northeast Society. We wish you the best as you transition from IIT Delhi to your future careers.</p>
+            </div>
         </section>
 
-        <div class="year-filters">
-            <button class="filter-btn active" data-year="2026">Batch of '26</button>
-            <button class="filter-btn" data-year="2025">Batch of '25</button>
-        </div>
+<div class="timeline-wrapper">
+    <div class="timeline-track">
+        <button class="timeline-year active" data-year="2026">2026</button>
+        <button class="timeline-year" data-year="2025">2025</button>
+    </div>
+    <div class="timeline-fade-right"></div>
+</div>
 
         <div id="batch-2026" class="batch-section active">
             <section class="alumni-grid">
@@ -62,9 +58,7 @@
                             <h3>Karissa Berti Khonglam</h3>
                             <div class="degree">Btech + Mtech, CSE</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
+                        <div class="alumni-quote">"Human resources are important as there can be cases where energy is needed andpotential energy is the thing."</div>
                     </div>
                 </div>
 
@@ -77,9 +71,7 @@
                             <h3>Judith Larvarzing Pulamte</h3>
                             <div class="degree">Msc, Microbiology</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
+                        <div class="alumni-quote">"Yearbook quote aka Senior quote"</div>
                     </div>
                 </div>
 
@@ -92,9 +84,7 @@
                             <h3>Orin Pao</h3>
                             <div class="degree">Btech, CSE</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Chacha, Vasteganahuiyee!"
-                        </div>
+                        <div class="alumni-quote">"Chacha, Vasteganahuiyee!"</div>
                     </div>
                 </div>
 
@@ -107,9 +97,7 @@
                             <h3>Laetitia Vida</h3>
                             <div class="degree">Msc, Mathematics</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
+                        <div class="alumni-quote">"Yearbook quote aka Senior quote"</div>
                     </div>
                 </div>
 
@@ -122,9 +110,7 @@
                             <h3>Nengneichong Florence Haokip</h3>
                             <div class="degree">MBA</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
+                        <div class="alumni-quote">"Yearbook quote aka Senior quote"</div>
                     </div>
                 </div>
 
@@ -137,76 +123,27 @@
                             <h3>Florence Laldinpuii</h3>
                             <div class="degree">Course to be filled</div>
                         </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_400,c_fill,g_face,q_auto,f_auto/v1780055561/jintiraj_odg3s0.jpg" alt="Jintiraj Talukdar" loading="lazy">
-                    </div>
-                    <div class="alumni-info">
-                        <div class="alumni-header">
-                            <h3>Jintiraj Talukdar</h3>
-                            <div class="degree">Course to be filled</div>
-                        </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_400,c_fill,g_face,q_auto,f_auto/v1780064566/mick_tyllns.jpg" alt="Mickgan Mossang" loading="lazy">
-                    </div>
-                    <div class="alumni-info">
-                        <div class="alumni-header">
-                            <h3>Mickgan Mossang</h3>
-                            <div class="degree">Course to be filled</div>
-                        </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_400,c_fill,g_face,q_auto,f_auto/v1780064462/arunabh_b9efwi.jpg" alt="Arunabh Bezbaruah" loading="lazy">
-                    </div>
-                    <div class="alumni-info">
-                        <div class="alumni-header">
-                            <h3>Arunabh Bezbaruah</h3>
-                            <div class="degree">Course to be filled</div>
-                        </div>
-                        <div class="alumni-quote">
-                            "Yearbook quote aka Senior quote"
-                        </div>
+                        <div class="alumni-quote">"Yearbook quote aka Senior quote"</div>
                     </div>
                 </div>
 
             </section>
         </div>
 
-        <div id="batch-2025" class="batch-section">
+    <div id="batch-2025" class="batch-section">
             <section class="alumni-grid">
-                <div class="alumni-card" style="grid-column: span 2; padding: 4rem; text-align: center; justify-content: center;">
-                    <h3 style="color: #64748b; font-size: 1.5rem;">Archive records for the Batch of '25 will be displayed here.</h3>
+                <div class="archive-notice">
+                    <h3>Records Pending</h3>
+                    <p>Archive records for the Batch of '25 will be updated soon.</p>
                 </div>
             </section>
         </div>
-
     </main>
 
     <footer>
         <div class="footer-content">
             <p>&copy; 2026 NorthEast Society, IIT Delhi.</p>
-            <p>
-                Site maintained by Kipgen | <a href="mailto:thanggousemkipgen@example.com">Report an issue</a>
-            </p>
+            <p>Site maintained by Kipgen | <a href="mailto:thanggousemkipgen@example.com">Report an issue</a></p>
         </div>
     </footer>
 

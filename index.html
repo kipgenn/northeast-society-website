@@ -21,12 +21,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=10.0">
+    <link rel="stylesheet" href="styles.css?v=11.0">
+    <link rel="stylesheet" href="index.css?v=11.0">
 </head>
 <body>
 
 
-    <header>
+    <!-- <header>
         <div class="g1">
             <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
             <div>
@@ -34,10 +35,10 @@
                 <h2>IIT Delhi</h2>
             </div>
         </div>
-    </header>
+    </header> -->
 
     <main>
-        
+
 <section class="hero-fullscreen">
             <div class="hero-parallax-wrapper">
                 <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780117609/gphoto_ncxdpk.jpg" alt="NEO Showcase" class="hero-bg">
@@ -49,17 +50,19 @@
             </div>
         </section>
 
+
+<!--  
         <div class="glass-nav-container">
             <nav class="glass-dock">
                 <a href="teams.html">TEAMS</a>
                 <a href="about.html">ABOUT US</a>
             </nav>
         </div>
-
+-->
         <section class="bento-container">
             <div class="bento-grid">
                 
-                <a href="alumni.html" class="bento-card bento-large dark">
+            <a href="alumni.html" class="bento-card bento-large dark">
                     <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780065992/p21_oqbmvs.jpg" alt="Culture" class="bento-img-bg">
                     <span class="bento-tag">Beyond Campus</span>
                     <div class="bento-content">
@@ -71,25 +74,57 @@
                     <img src="https://res.cloudinary.com/dv3amoobl/image/upload/w_800,c_fill,q_auto,f_auto/v1779994453/p5_kvud8p.jpg" alt="Gallery" class="bento-img-bg">
                     <span class="bento-tag">Our Moments</span>
                     <div class="bento-content">
-                        <h3>Gallery</h3>
+                        <h3>GALLERY</h3>
+                    </div>
+                </a>
+
+                <a href="about.html" class="bento-card bento-wide dark">
+                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780111053/p22_uwu67s.jpg" alt="About Us" class="bento-img-bg">
+                    <span class="bento-tag">Our Story</span>
+                    <div class="bento-content">
+                        <h3>ABOUT US</h3>
+                    </div>
+                </a>
+
+                <a href="teams.html" class="bento-card bento-wide dark">
+                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780117609/gphoto_ncxdpk.jpg" alt="The Team" class="bento-img-bg">
+                    <span class="bento-tag">The Committee</span>
+                    <div class="bento-content">
+                        <h3>TEAMS</h3>
                     </div>
                 </a>
 
                 <a href="events.html" class="bento-card bento-square light">
-                    <div class="bento-content">
-                        <h3 style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;">📝</h3>
-                        <h3 style="color: var(--text-main); font-size: 1.5rem;">Event Records</h3>
-                        <!-- <p style="color: #666; font-size: 0.95rem;">Browse our past initiatives and events.</p> -->
+                    <div class="bento-content" style="justify-content: center; align-items: center; text-align: center; height: 100%; padding: 1rem;">
+                        <div style="font-size: clamp(1.2rem, 3vw, 2rem); margin-bottom: 0.2rem;">📝</div>
+                        <h3 style="color: var(--text-main); font-size: clamp(0.7rem, 2vw, 1.1rem); letter-spacing: 0; line-height: 1.2;">EVENT<br>RECORDS</h3>
                     </div>
                 </a>
 
-                <a href="mailto:contact@northeastsocietyiitd.com" class="bento-card bento-square accent">
-                    <div class="bento-content" style="align-items: center; text-align: center;">
-                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Join the<br>Community</h3>
-                        <p style="font-size: 0.95rem;">Get in touch with us today.</p>
-                    </div>
-                </a>
+<a href="https://instagram.com/nes_iitd" target="_blank" rel="noopener noreferrer" class="bento-card bento-square accent" style="text-decoration: none; justify-content: center; align-items: center; text-align: center;">
+    <div class="bento-content" style="justify-content: center; align-items: center; text-align: center; height: 100%; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; z-index: 10;">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25));">
+            <defs>
+                <radialGradient id="ig-grad" r="150%" cx="30%" cy="107%">
+                    <stop stop-color="#fdf497" offset="0%"/>
+                    <stop stop-color="#fd5949" offset="45%"/>
+                    <stop stop-color="#d6249f" offset="60%"/>
+                    <stop stop-color="#285AEB" offset="90%"/>
+                </radialGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        
+        <div>
+            <h3 style="font-size: clamp(0.9rem, 2vw, 1.2rem); margin-bottom: 0.2rem; letter-spacing: 0.05em; line-height: 1.2; font-weight: 900; color: #ffffff;">FOLLOW US</h3>
+            <p style="font-size: clamp(0.7rem, 1.5vw, 0.85rem); color: rgba(255, 255, 255, 0.85); margin: 0; font-weight: 500; letter-spacing: 0.05em; text-transform: lowercase;">@nes_iitd</p>
+        </div>
 
+    </div>
+</a>
             </div>
         </section>
 

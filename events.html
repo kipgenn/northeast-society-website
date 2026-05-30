@@ -21,22 +21,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=10.0">
-    <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="styles.css?v=11.0">
+    <link rel="stylesheet" href="events.css?v=11.0">
 </head>
 <body>
-
-    <header>
-        <div class="g1">
-            <a href="index.html" style="display: flex; align-items: center; gap: 1rem; text-decoration: none;">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
-                <div>
-                    <h1 style="color: var(--text-main);">Northeast Society</h1>
-                    <h2 style="color: #666;">IIT Delhi</h2>
-                </div>
-            </a>
-        </div>
-    </header>
 
     <main>
         <section class="events-hero">
@@ -44,88 +32,90 @@
             <p>This is a dummy test text that will be replaced later. Just placeholders.</p>
         </section>
 
-        <div class="year-filters" style="margin-top: 2rem;">
-            <button class="filter-btn active" data-year="neo26">NEO '26</button>
-            <button class="filter-btn" data-year="dinner26">Community Dinner</button>
-        </div>
-
-        <div class="report-container">
+        <div class="event-dashboard-wrapper">
             
-            <div id="batch-neo26" class="batch-section active">
+            <aside class="event-sidebar">
+                <h3 class="sidebar-title">Event Archive</h3>
+                <div class="vertical-filters">
+                    <button class="sidebar-btn active" data-year="neo26">NEO '26</button>
+                    <button class="sidebar-btn" data-year="dinner26">Community Dinner</button>
+                </div>
+            </aside>
+
+            <div class="report-container dashboard-view">
                 
-                <div class="event-report-card">
-                    <div class="event-header">
-                        <h2 class="event-title">Northeast Experience yyyy</h2>
-                        <div class="event-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Date Executed</span>
-                                <span class="meta-value">Month x, yyyy</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Footfall / Attendees</span>
-                                <span class="meta-value">x+ Students</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Total Budget Allocation</span>
-                                <span class="meta-value">₹x,xx,xxx</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Chief Guest</span>
-                                <span class="meta-value">Placeholder Guest Name Here</span>
+                <div id="batch-neo26" class="batch-section active">
+                    <div class="event-report-card">
+                        <div class="event-header">
+                            <h2 class="event-title">Northeast Experience yyyy</h2>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Date Executed</span>
+                                    <span class="meta-value">Month x, yyyy</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Footfall / Attendees</span>
+                                    <span class="meta-value">x+ Students</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Total Budget Allocation</span>
+                                    <span class="meta-value">₹x,xx,xxx</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Chief Guest</span>
+                                    <span class="meta-value">Placeholder Guest Name Here</span>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="event-body">
+                            <h4>Significance & Objective</h4>
+                            <p>This paragraph is basically a dummy test placeholder and will be replaced later. The main goal for the yyyy edition was just putting some random words here so the layout stays exactly the same as before. It gives us a good way to check the formatting of the x sister states without showing the final content.</p>
+
+                            <h4>Execution Summary</h4>
+                            <p>Planning started x months ago. This event is split into y main dummy parts: the first test, the second draft, and the final night. Writing for this layout requires typing words directly from my head to ensure everything looks fine.</p>
+
+                            <h4>Key Takeaways & Notes for Next Year</h4>
+                            <ul>
+                                <li>The budget for dummy text needs to be adjusted by x% next year to accommodate future actual content.</li>
+                                <li>This bullet point is just a test dummy statement; later updates will allocate real information to these placeholder sentences.</li>
+                                <li>Drafting words must happen at least x months in advance to secure proper text lengths.</li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="event-body">
-                        <h4>Significance & Objective</h4>
-                        <p>This paragraph is basically a dummy test placeholder and will be replaced later. The main goal for the yyyy edition was just putting some random words here so the layout stays exactly the same as before. It gives us a good way to check the formatting of the x sister states without showing the final content.</p>
+                <div id="batch-dinner26" class="batch-section">
+                    <div class="event-report-card">
+                        <div class="event-header">
+                            <h2 class="event-title">Annual Community Dinner</h2>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Date Executed</span>
+                                    <span class="meta-value">Month x, yyyy</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Footfall / Attendees</span>
+                                    <span class="meta-value">x Members</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Total Budget Allocation</span>
+                                    <span class="meta-value">₹x,xxx</span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <h4>Execution Summary</h4>
-                        <p>Planning started x months ago. This event is split into y main dummy parts: the first test, the second draft, and the final night. Writing for this layout requires typing words directly from my head to ensure everything looks fine.</p>
+                        <div class="event-body">
+                            <h4>Significance & Objective</h4>
+                            <p>Written strictly as a dummy test, this paragraph is designed to fill space and keep everything between the top header, the main body, and the bottom footer. It serves as a placeholder and a safe way for us testing out the new web layout.</p>
 
-                        <h4>Key Takeaways & Notes for Next Year</h4>
-                        <ul>
-                            <li>The budget for dummy text needs to be adjusted by x% next year to accommodate future actual content.</li>
-                            <li>This bullet point is just a test dummy statement; later updates will allocate real information to these placeholder sentences.</li>
-                            <li>Drafting words must happen at least x months in advance to secure proper text lengths.</li>
-                        </ul>
+                            <h4>Execution Summary</h4>
+                            <p>This text will be replaced later on. Content is written completely by me right now to maintain an exact word count here. This section includes x sentences as a dummy and y random words regarding nothing specific, just holding space, and testing formatting.</p>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-            <div id="batch-dinner26" class="batch-section">
-                
-                <div class="event-report-card">
-                    <div class="event-header">
-                        <h2 class="event-title">Annual Community Dinner</h2>
-                        <div class="event-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Date Executed</span>
-                                <span class="meta-value">Month x, yyyy</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Footfall / Attendees</span>
-                                <span class="meta-value">x Members</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Total Budget Allocation</span>
-                                <span class="meta-value">₹x,xxx</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="event-body">
-                        <h4>Significance & Objective</h4>
-                        <p>Written strictly as a dummy test, this paragraph is designed to fill space and keep everything between the top header, the main body, and the bottom footer. It serves as a placeholder and a safe way for us testing out the new web layout.</p>
-
-                        <h4>Execution Summary</h4>
-                        <p>This text will be replaced later on. Content is written completely by me right now to maintain an exact word count here. This section includes x sentences as a dummy and y random words regarding nothing specific, just holding space, and testing formatting.</p>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
     </main>
