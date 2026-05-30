@@ -17,7 +17,6 @@ p, a, span, div {
     font-family: inherit;
 }
 
-/* FULLSCREEN TEXT HERO (Aligned with script.js) */
 .hero-text-fullscreen {
     min-height: 80vh;
     display: flex;

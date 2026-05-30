@@ -50,7 +50,7 @@
 })();
 
 
-// 2. UI UTILITIES (Nav, Filters, Lightbox)
+
 document.addEventListener("DOMContentLoaded", function() {
     
     // Read More Button
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Mobile Navigation
+
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNav = document.getElementById('mobile-nav');
     if (hamburgerBtn && mobileNav) {
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-// Batch Timeline Logic
+
     const timelineBtns = document.querySelectorAll('.timeline-year');
     const batchSections = document.querySelectorAll('.batch-section');
     
