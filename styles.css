@@ -28,29 +28,32 @@ body {
     overflow-x: hidden;
 }
 
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    margin: 0;
-    border-radius: 0;
-    z-index: 100;
-    background-color: rgba(255, 255, 255, 0.85); 
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px); 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
 }
 
 .g1 {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
 }
-
 .g1 img {
     height: 5rem;
     width: auto;
@@ -68,14 +71,19 @@ header {
     line-height: 1.2;
 }
 
-.g1 h2 {
-    font-size: 1.2rem;       
-    font-weight: 600;        
-    color: #333333;          
-    letter-spacing: 0.02em;  
-    margin-top: 0.2rem;      
+.g1 h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
 }
 
+.g1 h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
+}
 #front-photo {
     width: 100%;
     height: 60vh;
@@ -506,14 +514,20 @@ footer a {
     background-color: #000;
 }
 
-.hero-bg {
+.hero-parallax-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    z-index: 1;
+    will-change: transform;
+}
+
+.hero-bg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
     filter: brightness(0.5);
     transform: scale(1.05);
     animation: slowZoom 15s linear infinite alternate;
@@ -629,12 +643,16 @@ footer a {
     overflow: hidden;
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     text-decoration: none;
     color: var(--text-main);
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(0,0,0,0.03);
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1);
+    transition: box-shadow 0.4s ease, transform 0.1s ease-out;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
 }
 
 .bento-card:hover {
@@ -664,12 +682,15 @@ footer a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
+    filter: contrast(1) saturate(1) brightness(1);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
     z-index: 0;
+    border-radius: 1.5rem;
 }
 
 .bento-card:hover .bento-img-bg {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: contrast(1.15) saturate(1.25) sepia(0.15) brightness(0.9);
 }
 
 .bento-card.dark::before {
@@ -972,4 +993,10 @@ header {
     100% { width: 100%; }
 }
 
-/* ===== END PAGE LOADER ===== */
+header.header-scrolled {
+    transform: translateY(0);
+    opacity: 1;
+}
+.bento-card * {
+    pointer-events: none;
+}
