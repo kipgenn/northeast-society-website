@@ -1,3 +1,6 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 .alumni-hero {
     background: linear-gradient(135deg, #0f172a, var(--text-main));
     color: white;

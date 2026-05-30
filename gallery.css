@@ -1,3 +1,6 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 .gallery-hero {
     background-color: #09090b;
     color: white;
@@ -46,6 +49,7 @@
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     background-color: #09090b !important;
     color: #e4e4e7;
 }
@@ -227,8 +231,29 @@ body {
     .masonry-grid {
         column-count: 1;
     }
+    
+    header {
+        width: max-content;
+        padding: 0.6rem 1.5rem 0.6rem 1rem;
+    }
+    
+    header .g1 a {
+        gap: 0.8rem;
+    }
+    
+    header img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    header h1 {
+        font-size: 0.95rem !important;
+    }
+    
+    header h2 {
+        font-size: 0.75rem !important;
+    }
 }
-
 header {
     position: fixed !important;
     top: 1.5rem;

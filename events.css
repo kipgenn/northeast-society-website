@@ -1,3 +1,6 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 .events-hero {
     background: linear-gradient(135deg, var(--text-main), #1e293b);
     color: white;
