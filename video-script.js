@@ -11,7 +11,7 @@ var timeUpdater;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player-node', {
         videoId: '-SL63myuzIE', /* Your new YouTube video ID */
-        playerVars: {
+            playerVars: {
             'autoplay': 1,
             'controls': 0, 
             'disablekb': 1,
@@ -20,7 +20,8 @@ function onYouTubeIframeAPIReady() {
             'playsinline': 1,
             'mute': 1, 
             'rel': 0,
-            'wmode': 'transparent' /* Keeps iframe clear so you can see the thumbnail */
+            'wmode': 'transparent',
+            'vq': 'hd1080' /* NEW: Tells YouTube to prioritize 1080p HD */
         },
         events: {
             'onReady': onPlayerReady
