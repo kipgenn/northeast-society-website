@@ -7,11 +7,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var timeUpdater; 
 
-// 2. THIS MUST BE IN THE GLOBAL SCOPE (Do not wrap it in anything)
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player-node', {
-        videoId: '-SL63myuzIE', /* Your new YouTube video ID */
-            playerVars: {
+        videoId: '-SL63myuzIE', 
+        playerVars: {
             'autoplay': 1,
             'controls': 0, 
             'disablekb': 1,
@@ -21,7 +20,7 @@ function onYouTubeIframeAPIReady() {
             'mute': 1, 
             'rel': 0,
             'wmode': 'transparent',
-            'vq': 'hd1080' /* NEW: Tells YouTube to prioritize 1080p HD */
+            'vq': 'hd1080' 
         },
         events: {
             'onReady': onPlayerReady
@@ -29,7 +28,6 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
-// 3. THIS ALSO MUST BE IN THE GLOBAL SCOPE
 function onPlayerReady(event) {
     const playBtn = document.getElementById('play-pause-btn');
     const muteBtn = document.getElementById('mute-btn');
@@ -43,7 +41,26 @@ function onPlayerReady(event) {
     const iconVol = document.getElementById('icon-vol');
     const iconMute = document.getElementById('icon-mute');
 
-    // Utility: Format seconds into M:SS
+    // ==========================================
+    // THE MASTER TIMER LOGIC (Mobile Fix)
+    // ==========================================
+    let controlsTimeout;
+    const ytContainer = document.querySelector('.custom-yt-container');
+
+    // This function wakes the UI and sets a 3-second timer to hide it again
+    function wakeControls() {
+        if (!ytContainer) return;
+        ytContainer.classList.add('force-controls');
+        clearTimeout(controlsTimeout);
+        
+        controlsTimeout = setTimeout(() => {
+            // Only hide the controls if the video is actually playing
+            if (player && player.getPlayerState() == YT.PlayerState.PLAYING) {
+                ytContainer.classList.remove('force-controls');
+            }
+        }, 3000);
+    }
+
     function formatTime(seconds) {
         if (!seconds) return "0:00";
         const min = Math.floor(seconds / 60);
@@ -51,7 +68,6 @@ function onPlayerReady(event) {
         return `${min}:${sec < 10 ? '0' : ''}${sec}`;
     }
 
-    // Set initial duration
     const duration = player.getDuration();
     totalTimeText.textContent = formatTime(duration);
     seekSlider.max = duration;
@@ -67,6 +83,7 @@ function onPlayerReady(event) {
             iconPlay.classList.add('hidden');
             iconPause.classList.remove('hidden');
         }
+        wakeControls(); // Reset timer
     });
 
     // Mute / Unmute Toggle
@@ -80,6 +97,7 @@ function onPlayerReady(event) {
             iconVol.classList.add('hidden');
             iconMute.classList.remove('hidden');
         }
+        wakeControls(); // Reset timer
     });
 
     // Update Progress Bar
@@ -98,7 +116,6 @@ function onPlayerReady(event) {
         }
     }
     
-    // Run the updater every 100ms
     timeUpdater = setInterval(updateProgressBar, 100);
 
     // Seek Logic (Dragging the slider)
@@ -111,26 +128,23 @@ function onPlayerReady(event) {
             const percentage = (seekTo / total) * 100;
             progressFill.style.width = `${percentage}%`;
         }
+        wakeControls(); // Reset timer
     });
 
-    // ==========================================
-    // FULLSCREEN LOGIC
-    // ==========================================
+    // Fullscreen Logic
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const iconExpand = document.getElementById('icon-expand');
     const iconCompress = document.getElementById('icon-compress');
-    const container = document.querySelector('.custom-yt-container');
 
-    // Toggle Fullscreen on click
     if (fullscreenBtn) {
         fullscreenBtn.addEventListener('click', () => {
             if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
+                if (ytContainer.requestFullscreen) {
+                    ytContainer.requestFullscreen();
+                } else if (ytContainer.webkitRequestFullscreen) {
+                    ytContainer.webkitRequestFullscreen();
+                } else if (ytContainer.msRequestFullscreen) {
+                    ytContainer.msRequestFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
@@ -141,10 +155,10 @@ function onPlayerReady(event) {
                     document.msExitFullscreen();
                 }
             }
+            wakeControls(); // Reset timer
         });
     }
 
-    // Listen for state changes to correct the icons
     const updateFullscreenIcons = () => {
         if (document.fullscreenElement || document.webkitFullscreenElement) {
             iconExpand.classList.add('hidden');
@@ -158,16 +172,10 @@ function onPlayerReady(event) {
     document.addEventListener('fullscreenchange', updateFullscreenIcons);
     document.addEventListener('webkitfullscreenchange', updateFullscreenIcons);
 
-    // ==========================================
-    // CLICK SCREEN TO PLAY/PAUSE & WAKE UI
-    // ==========================================
+    // Center Screen Click (The invisible shield)
     const clickOverlay = document.getElementById('video-click-overlay');
-    const ytContainer = document.querySelector('.custom-yt-container');
-    let controlsTimeout;
-
     if (clickOverlay) {
         clickOverlay.addEventListener('click', () => {
-            // 1. Toggle Play/Pause
             if (player.getPlayerState() == YT.PlayerState.PLAYING) {
                 player.pauseVideo();
                 iconPlay.classList.remove('hidden');
@@ -177,19 +185,7 @@ function onPlayerReady(event) {
                 iconPlay.classList.add('hidden');
                 iconPause.classList.remove('hidden');
             }
-
-            // 2. Wake up the UI controls
-            ytContainer.classList.add('force-controls');
-            
-            // 3. Clear any existing timer
-            clearTimeout(controlsTimeout);
-
-            // 4. Set a timer to hide the UI after 3 seconds (if playing)
-            controlsTimeout = setTimeout(() => {
-                if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-                    ytContainer.classList.remove('force-controls');
-                }
-            }, 3000);
+            wakeControls(); // Reset timer
         });
     }
 }

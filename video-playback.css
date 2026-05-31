@@ -1,6 +1,6 @@
-/* =========================================
+/*
    1. VIDEO BREAKOUT & CONTAINER
-   ========================================= */
+*/
 .video-breakout-section {
     width: 100%;
     padding: 5rem 1.5rem;
@@ -25,9 +25,9 @@
         0 0 80px rgba(26, 35, 126, 0.15);
 }
 
-/* =========================================
+/* 
    2. VIDEO INTRO HEADER (Narrative Anchor)
-   ========================================= */
+ */
 .video-intro-header {
     text-align: center;
     max-width: 800px;
@@ -86,7 +86,7 @@
     pointer-events: none; 
     z-index: 1;
     
-    /* Your custom thumbnail */
+    /*  custom thumbnail */
     background-image: url('https://res.cloudinary.com/dniy8inc1/image/upload/v1780246994/yt_thumb_wupxix.jpg');
     background-size: cover;
     background-position: center center;
@@ -148,9 +148,11 @@
     z-index: 10;
 }
 
-.custom-yt-container:hover .yt-controls,
-.video-feature-card:hover .yt-controls {
-    opacity: 1;
+/* Only apply hover states on desktop devices with a physical mouse */
+@media (hover: hover) {
+    .custom-yt-container:hover .yt-controls {
+        opacity: 1;
+    }
 }
 
 .progress-wrapper {
@@ -258,17 +260,17 @@
    7. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
-    /* Tighten video section to screen edges */
+ 
     .video-breakout-section {
         padding: 2rem 0.5rem 1rem 0.5rem; 
     }
     
-    /* Slightly sharper corners for edge-to-edge look */
+
     .custom-yt-container {
         border-radius: 0.75rem;
     }
 
-    /* Adjust video intro header margin */
+
     .video-intro-header {
         margin-bottom: 2rem;
     }
