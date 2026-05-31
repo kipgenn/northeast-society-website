@@ -50,7 +50,7 @@
 })();
 
 
-
+// 2. UI UTILITIES (Nav, Filters, Lightbox)
 document.addEventListener("DOMContentLoaded", function() {
     
     // Read More Button
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-
+    // Mobile Navigation
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNav = document.getElementById('mobile-nav');
     if (hamburgerBtn && mobileNav) {
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-
+// Batch Timeline Logic
     const timelineBtns = document.querySelectorAll('.timeline-year');
     const batchSections = document.querySelectorAll('.batch-section');
     
@@ -247,7 +247,7 @@ function scrollCarousel(direction, trackId) {
 }
 
 // ==========================================
-// 4. MAGNETIC CURSOR (HARDWARE BYPASSED)
+// 4. MAGNETIC CURSOR (OPTIMIZED)
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -256,41 +256,56 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(cursor);
 
         let activeTarget = null;
+        let targetRect = null; 
+
+        let isCursorTicking = false;
+        let mouseX = 0;
+        let mouseY = 0;
 
         document.addEventListener('mousemove', (e) => {
-            if (activeTarget) {
-                const rect = activeTarget.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top + rect.height / 2;
-                
-                cursor.style.transform = `translate(calc(-50% + ${(e.clientX - x) * 0.2}px), calc(-50% + ${(e.clientY - y) * 0.2}px))`;
-                cursor.style.left = x + 'px';
-                cursor.style.top = y + 'px';
-                
-                activeTarget.style.transform = `translate(${(e.clientX - x) * 0.1}px, ${(e.clientY - y) * 0.1}px)`;
-            } else {
-                cursor.style.transform = 'translate(-50%, -50%)';
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (!isCursorTicking) {
+                window.requestAnimationFrame(() => {
+                    if (activeTarget && targetRect) {
+                        // Use the cached targetRect instead of recalculating
+                        const x = targetRect.left + targetRect.width / 2;
+                        const y = targetRect.top + targetRect.height / 2;
+                        
+                        cursor.style.transform = `translate(calc(-50% + ${(mouseX - x) * 0.2}px), calc(-50% + ${(mouseY - y) * 0.2}px))`;
+                        cursor.style.left = x + 'px';
+                        cursor.style.top = y + 'px';
+                        
+                        activeTarget.style.transform = `translate(${(mouseX - x) * 0.1}px, ${(mouseY - y) * 0.1}px)`;
+                    } else {
+                        cursor.style.transform = 'translate(-50%, -50%)';
+                        cursor.style.left = mouseX + 'px';
+                        cursor.style.top = mouseY + 'px';
+                    }
+                    isCursorTicking = false;
+                });
+                isCursorTicking = true;
             }
         });
 
         document.addEventListener('mouseover', (e) => {
-            // Added :not(.bento-card) so the magnetic cursor ignores the grid
-            const target = e.target.closest('a:not(.bento-card), button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
+            const target = e.target.closest('a:not(.bento-card), button:not(.yt-btn), .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
             if (target) {
                 cursor.classList.add('hover-image');
                 activeTarget = target;
+                // CACHE THE GEOMETRY ONCE WHEN THE MOUSE ENTERS
+                targetRect = target.getBoundingClientRect();
                 target.style.transition = 'transform 0.1s linear';
             }
         });
 
         document.addEventListener('mouseout', (e) => {
-            // Added :not(.bento-card) here as well
-            const target = e.target.closest('a:not(.bento-card), button, .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
+            const target = e.target.closest('a:not(.bento-card), button:not(.yt-btn), .masonry-item, .lightbox-close, .filter-btn, .glass-dock a');
             if (target) {
                 cursor.classList.remove('hover-image');
                 activeTarget = null;
+                targetRect = null; // CLEAR THE CACHE
                 target.style.transform = 'translate(0px, 0px)';
                 target.style.transition = 'transform 0.3s ease';
             }
@@ -412,22 +427,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Dynamic Text Hero Scroll Animation
-window.addEventListener('scroll', () => {
-    const dynamicText = document.querySelector('.dynamic-text-container');
-    
-    if (dynamicText) {
-        const scrollY = window.scrollY;
-        
-        const opacity = Math.max(0, 1 - (scrollY / 500));
-        
-        const translateY = scrollY * 0.35; 
-        const scale = Math.max(0.85, 1 - (scrollY / 1000));
-
-
-        dynamicText.style.transform = `translateY(${translateY}px) scale(${scale})`;
-        dynamicText.style.opacity = opacity;
-    }
-});
 
 window.addEventListener('scroll', () => {
     const dynamicText = document.querySelector('.dynamic-text-container');
@@ -441,19 +440,6 @@ window.addEventListener('scroll', () => {
         dynamicText.style.transform = `translateY(${translateY}px) scale(${scale})`;
         dynamicText.style.opacity = opacity;
     }
-});
-
-const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
-            scrollObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    root: null,
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
 });
 
 document.querySelectorAll('.reveal-on-scroll').forEach(el => {
@@ -568,3 +554,27 @@ if (mainHeader) {
         }
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const quotes = document.querySelectorAll(".alumni-quote");
+
+    quotes.forEach(quote => {
+        // Check if the content is taller than the container (overflowing)
+        if (quote.scrollHeight > quote.clientHeight) {
+            // Create the button
+            const btn = document.createElement("button");
+            btn.innerText = "View More";
+            btn.className = "read-more-btn";
+
+            // Add toggle logic
+            btn.addEventListener("click", () => {
+                quote.classList.toggle("expanded");
+                btn.innerText = quote.classList.contains("expanded") ? "View Less" : "View More";
+            });
+
+            // Insert button after the quote div
+            quote.parentNode.insertBefore(btn, quote.nextSibling);
+        }
+    });
+});
+
+

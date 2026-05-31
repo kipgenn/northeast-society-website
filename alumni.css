@@ -24,7 +24,7 @@ p, a, span, div {
 /* --- FIX 1: Slide-down header --- */
 .floating-header {
     position: fixed;
-    top: -150px; /* Hides it off-screen initially */
+    top: -150px;
     left: 0;
     width: 100%;
     z-index: 9999;
@@ -35,7 +35,7 @@ p, a, span, div {
 }
 
 .floating-header.header-scrolled {
-    top: 0; /* Slides down on scroll */
+    top: 0; 
 }
 
 /* --- FIX 2: Dark text for Alumni page header --- */
@@ -66,6 +66,7 @@ main {
     z-index: 1;
     overflow: hidden;
 }
+
 .hero-content-main {
     display: flex;
     flex-direction: column;
@@ -142,9 +143,10 @@ main {
     display: block; 
 }
 
+/* MODIFIED TO FLEXBOX TO CENTER ORPHANED ROWS */
 .alumni-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
     max-width: 85rem;
@@ -155,6 +157,8 @@ main {
 }
 
 .alumni-card {
+    /* Calculates exactly 1/3 of the container width minus the 2rem gap */
+    width: calc(33.333% - 1.34rem); 
     background: #ffffff;
     border-radius: 1rem;
     overflow: hidden;
@@ -252,6 +256,7 @@ footer a {
     color: #cbd5e1 !important;
     text-decoration: underline;
 }
+
 @media (max-width: 64rem) {
     .timeline-wrapper {
         margin-top: 3rem;
@@ -259,11 +264,15 @@ footer a {
     }
 
     .alumni-grid { 
-        grid-template-columns: repeat(2, 1fr); 
         gap: 2.5rem; 
         padding: 0 1.5rem;
     }
     
+    .alumni-card {
+        /* Scales to 2 columns on tablets */
+        width: calc(50% - 1.25rem); 
+    }
+
     .alumni-img {
         padding-top: 100%; 
     }
@@ -298,6 +307,7 @@ footer a {
         text-overflow: ellipsis;
     }
 }
+
 @media (max-width: 48rem) {
     .timeline-wrapper {
         margin-top: 2rem;
@@ -305,12 +315,13 @@ footer a {
     }
 
     .alumni-grid { 
-        grid-template-columns: 1fr; 
         padding: 0 1rem;
         gap: 2.5rem;
     }
 
     .alumni-card {
+        /* Scales to 1 centered column on phones */
+        width: 100%;
         max-width: 320px;
         margin: 0 auto;
     }
@@ -337,6 +348,7 @@ footer a {
         margin-top: 1.5rem;
     }
 }
+
 .timeline-wrapper {
     position: relative;
     max-width: 600px;
@@ -383,7 +395,6 @@ footer a {
     border-bottom: 3px solid var(--accent);
 }
 
-
 .timeline-fade-right {
     position: absolute;
     top: 0;
@@ -393,6 +404,7 @@ footer a {
     background: linear-gradient(to right, rgba(248, 250, 252, 0), rgba(248, 250, 252, 1));
     pointer-events: none;
 }
+
 .archive-notice {
     grid-column: 1 / -1;
     min-height: 40vh; 
@@ -427,4 +439,25 @@ footer a {
     color: #64748b;
     font-size: 1.1rem;
     max-width: 400px;
+}
+/* Add this to allow the expansion */
+.alumni-quote {
+    transition: max-height 0.3s ease;
+}
+
+.alumni-quote.expanded {
+    display: block !important; /* Overrides the webkit-box clamp */
+}
+
+/* The button styling */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    padding: 0;
+    text-transform: uppercase;
 }

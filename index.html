@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://res.cloudinary.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
-
-    <title>Northeast Society, IIT Delhi</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://res.cloudinary.com data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; frame-src https://www.youtube.com;">    <title>Northeast Society, IIT Delhi</title>
     <meta name="description" content="The Northeast Society acts as a home away from home for students at IIT Delhi. We bridge the gap between the Eight Sister States and campus life.">
     <meta name="author" content="Northeast Society, IIT Delhi">
     <meta name="theme-color" content="#1A237E">
@@ -21,25 +19,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=11.0">
-    <link rel="stylesheet" href="index.css?v=11.0">
+    <link rel="stylesheet" href="styles.css?v=12.0">
+    <link rel="stylesheet" href="index.css?v=12.0">
+    <link rel="stylesheet" href="video-playback.css?v=12.0">
 </head>
 <body>
 
-
-    <!-- <header>
-        <div class="g1">
-            <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
-            <div>
-                <h1>Northeast Society</h1>
-                <h2>IIT Delhi</h2>
-            </div>
-        </div>
-    </header> -->
-
     <main>
 
-<section class="hero-fullscreen">
+        <section class="hero-fullscreen">
             <div class="hero-parallax-wrapper">
                 <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780117609/gphoto_ncxdpk.jpg" alt="NEO Showcase" class="hero-bg">
             </div>
@@ -48,21 +36,71 @@
                 <h1>NORTHEAST SOCIETY</h1>
                 <p>Indian Institute of Technology Delhi</p>
             </div>
+            <a href="#main-content" class="scroll-cascade" aria-label="Scroll down">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron c1"><polyline points="4 8 12 16 20 8"></polyline></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron c2"><polyline points="4 8 12 16 20 8"></polyline></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron c3"><polyline points="4 8 12 16 20 8"></polyline></svg>
+            </a>
         </section>
 
 
-<!--  
-        <div class="glass-nav-container">
-            <nav class="glass-dock">
-                <a href="teams.html">TEAMS</a>
-                <a href="about.html">ABOUT US</a>
-            </nav>
-        </div>
--->
+        <section id="main-content" class="video-breakout-section">
+
+            <div class="video-intro-header">
+                <span class="intro-tag">Featured • May 2026</span>
+                <h2>Farewell, Batch of 2026</h2>
+                <p>You will always be a part of the NES, IITD family.</p>
+            </div>
+
+
+
+            <div class="custom-yt-container">
+                
+                <div class="video-layer">
+                    <div id="youtube-player-node"></div>
+                </div>
+                <div id="video-click-overlay" class="video-click-overlay"></div>
+                <div class="yt-controls">
+                    <div class="progress-wrapper">
+                        <div class="progress-bar-bg"></div>
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                        <input type="range" id="seek-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+
+                    <div class="control-buttons">
+                        <button id="play-pause-btn" class="yt-btn">
+                            <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M8 5v14l11-7z"/></svg>
+                            <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        
+                        <button id="mute-btn" class="yt-btn">
+                            <svg id="icon-vol" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                            <svg id="icon-mute" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        </button>
+
+
+                        <!-- NEW: Fullscreen Toggle Button -->
+                        <button id="fullscreen-btn" class="yt-btn" style="margin-left: auto;">
+                            <!-- Expand Icon -->
+                            <svg id="icon-expand" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            <!-- Compress Icon -->
+                            <svg id="icon-compress" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+                        </button>
+
+
+                        <div class="time-display">
+                            <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
         <section class="bento-container">
             <div class="bento-grid">
                 
-            <a href="alumni.html" class="bento-card bento-large dark">
+                <a href="alumni.html" class="bento-card bento-large dark">
                     <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780065992/p21_oqbmvs.jpg" alt="Culture" class="bento-img-bg">
                     <span class="bento-tag">Beyond Campus</span>
                     <div class="bento-content">
@@ -101,30 +139,31 @@
                     </div>
                 </a>
 
-<a href="https://instagram.com/nes_iitd" target="_blank" rel="noopener noreferrer" class="bento-card bento-square accent" style="text-decoration: none; justify-content: center; align-items: center; text-align: center;">
-    <div class="bento-content" style="justify-content: center; align-items: center; text-align: center; height: 100%; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; z-index: 10;">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25));">
-            <defs>
-                <radialGradient id="ig-grad" r="150%" cx="30%" cy="107%">
-                    <stop stop-color="#fdf497" offset="0%"/>
-                    <stop stop-color="#fd5949" offset="45%"/>
-                    <stop stop-color="#d6249f" offset="60%"/>
-                    <stop stop-color="#285AEB" offset="90%"/>
-                </radialGradient>
-            </defs>
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
-        
-        <div>
-            <h3 style="font-size: clamp(0.9rem, 2vw, 1.2rem); margin-bottom: 0.2rem; letter-spacing: 0.05em; line-height: 1.2; font-weight: 900; color: #ffffff;">FOLLOW US</h3>
-            <p style="font-size: clamp(0.7rem, 1.5vw, 0.85rem); color: rgba(255, 255, 255, 0.85); margin: 0; font-weight: 500; letter-spacing: 0.05em; text-transform: lowercase;">@nes_iitd</p>
-        </div>
+                <a href="https://instagram.com/nes_iitd" target="_blank" rel="noopener noreferrer" class="bento-card bento-square accent" style="text-decoration: none; justify-content: center; align-items: center; text-align: center;">
+                    <div class="bento-content" style="justify-content: center; align-items: center; text-align: center; height: 100%; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; z-index: 10;">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25));">
+                            <defs>
+                                <radialGradient id="ig-grad" r="150%" cx="30%" cy="107%">
+                                    <stop stop-color="#fdf497" offset="0%"/>
+                                    <stop stop-color="#fd5949" offset="45%"/>
+                                    <stop stop-color="#d6249f" offset="60%"/>
+                                    <stop stop-color="#285AEB" offset="90%"/>
+                                </radialGradient>
+                            </defs>
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        
+                        <div>
+                            <h3 style="font-size: clamp(0.9rem, 2vw, 1.2rem); margin-bottom: 0.2rem; letter-spacing: 0.05em; line-height: 1.2; font-weight: 900; color: #ffffff;">FOLLOW US</h3>
+                            <p style="font-size: clamp(0.7rem, 1.5vw, 0.85rem); color: rgba(255, 255, 255, 0.85); margin: 0; font-weight: 500; letter-spacing: 0.05em; text-transform: lowercase;">@nes_iitd</p>
+                        </div>
 
-    </div>
-</a>
+                    </div>
+                </a>
+
             </div>
         </section>
 
@@ -140,5 +179,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="video-script.js"></script>
 </body>
 </html>
