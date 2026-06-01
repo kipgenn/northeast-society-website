@@ -1,9 +1,22 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+*, *::before, *::after {
+    box-sizing: border-box !important;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    /* Hides scrollbar in Firefox */
+    scrollbar-width: none; 
+}
+
+/* Hides scrollbar in Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    display: none;
+}
 #front-photo {
     width: 100%;
     height: 60vh;
@@ -154,7 +167,6 @@ body, html {
     .bento-content h3 { font-size: clamp(0.9rem, 4vw, 1.2rem); margin-bottom: 0.2rem; }
     .bento-tag { top: 0.8rem; left: 0.8rem; padding: 0.25rem 0.5rem; font-size: 0.55rem; }
     
-    /* Pulls the bento grid tighter to the video on mobile */
     .bento-container {
         margin-top: 1rem;
         padding: 0 1rem;
@@ -175,9 +187,6 @@ body, html {
     pointer-events: none;
 }
 
-/* 
-  SQUARE BENTO CARD ALIGNMENT
- */
 .bento-card.bento-square .bento-content {
     justify-content: center;
     align-items: center;

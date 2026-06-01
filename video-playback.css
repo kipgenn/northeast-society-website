@@ -1,80 +1,114 @@
-/*
-   1. VIDEO BREAKOUT & CONTAINER
-*/
-.video-breakout-section {
+.feature-section {
     width: 100%;
-    padding: 5rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3.5rem 1.5rem 3rem 1.5rem; 
     box-sizing: border-box;
-    background-color: #F8F9FA;
+    background-color: #0B1021;
 }
 
-.video-feature-card, 
-.custom-yt-container {
-    position: relative;
+.feature-wrapper {
     width: 100%;
     max-width: 1000px;
-    aspect-ratio: 16 / 9;
-    margin: 0 auto;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    background-color: #0f172a;
-
-    transition: border-radius 0.3s ease, max-width 0.3s ease;
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.4), /* The grounding shadow */
-        0 0 80px rgba(26, 35, 126, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
-/* 
-   2. VIDEO INTRO HEADER (Narrative Anchor)
- */
-.video-intro-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-    padding: 0 1rem;
-    animation: fadeUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+.feature-header {
+    width: 100%;
+    text-align: left;
 }
 
-.video-intro-header .intro-tag {
+.feature-tag {
     display: inline-block;
     color: var(--accent-vibrant);
     font-size: 0.85rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-.video-intro-header h2 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+.feature-header h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
     font-weight: 900;
-    color: var(--text-main);
+    color: #ffffff;
     line-height: 1.1;
-    margin-bottom: 1.2rem;
     letter-spacing: -0.02em;
+    margin: 0;
 }
 
-.video-intro-header p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    color: #555555;
+.feature-media {
+    width: 100%;
+}
+
+.feature-description {
+    width: 100%;
+    text-align: left;
+    animation: fadeUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8); 
+}
+
+.feature-description p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #94A3B8;
     line-height: 1.6;
     font-weight: 400;
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
 }
 
-/*  
-   3. IFRAME & VISUAL OVERLAYS
-     */
-#alumni-video {
-    position: absolute;
-    top: 0;
-    left: 0;
+.feature-scroll-handoff {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin-top: auto;
+}
+
+.feature-scroll-handoff svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.5rem;
+    animation: bounce 2s infinite;
+}
+
+.feature-scroll-handoff:hover {
+    color: #ffffff;
+    transform: translateY(-5px);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(5px); }
+    60% { transform: translateY(3px); }
+}
+
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.custom-yt-container {
+    position: relative;
     width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.75; 
+    aspect-ratio: 16 / 9;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background-color: #0f172a;
+    transition: border-radius 0.3s ease, max-width 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 80px rgba(26, 35, 126, 0.15);
 }
 
 .video-layer {
@@ -85,8 +119,6 @@
     height: 100%;
     pointer-events: none; 
     z-index: 1;
-    
-    /*  custom thumbnail */
     background-image: url('https://res.cloudinary.com/dniy8inc1/image/upload/v1780246994/yt_thumb_wupxix.jpg');
     background-size: cover;
     background-position: center center;
@@ -99,41 +131,6 @@
     transform: scale(1);
 }
 
-.video-overlay-text {
-    position: absolute;
-    bottom: 6rem;
-    left: 3rem;
-    z-index: 2;
-    color: #ffffff;
-    pointer-events: none;
-    animation: textFadeOut 2s ease-in-out 4s forwards;
-}
-
-.video-overlay-text h3 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 900;
-    margin-bottom: 0.2rem;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-}
-
-.video-overlay-text p {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-}
-
-@keyframes textFadeOut {
-    0% { opacity: 1; visibility: visible; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-/*  
-   4. CUSTOM YOUTUBE CONTROLS
-     */
 .yt-controls {
     position: absolute;
     bottom: 0;
@@ -148,7 +145,6 @@
     z-index: 10;
 }
 
-/* Only apply hover states on desktop devices with a physical mouse */
 @media (hover: hover) {
     .custom-yt-container:hover .yt-controls {
         opacity: 1;
@@ -208,7 +204,7 @@
 }
 
 .yt-btn:focus, .yt-btn:focus-visible {
-    outline: none !important; 
+    outline: none; 
 }
 
 .yt-btn:hover {
@@ -225,58 +221,110 @@
     font-family: "Roboto", sans-serif;
 }
 
-/*  
-   5. CLICK-TO-PLAY SHIELD & UI WAKEUP
-     */
 .video-click-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 5; /* Above video, below controls */
+    z-index: 5;
     cursor: pointer;
 }
 
-/* Forces controls to appear when tapped */
 .custom-yt-container.force-controls .yt-controls {
     opacity: 1;
 }
 
-/*  
-   6. FULLSCREEN MODE OVERRIDES
-     */
-.custom-yt-container:fullscreen {
+.custom-yt-container:fullscreen, .custom-yt-container:-webkit-full-screen {
     border-radius: 0;
     max-width: 100%;
 }
 
-.custom-yt-container:-webkit-full-screen {
-    border-radius: 0;
-    max-width: 100%;
-}
-
-/*  
-   7. MOBILE RESPONSIVENESS
-     */
 @media (max-width: 768px) {
- 
-    .video-breakout-section {
-        padding: 2rem 0.5rem 1rem 0.5rem; 
+    .feature-section {
+        padding: 3rem 1rem 3rem 1rem; 
+        min-height: auto; 
     }
-    
+
+    .feature-wrapper {
+        gap: 1rem;
+    }
+
+    .feature-header h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
 
     .custom-yt-container {
         border-radius: 0.75rem;
     }
 
-
-    .video-intro-header {
-        margin-bottom: 2rem;
+    .feature-quote-box {
+        padding: 1rem;
+        margin: 1.2rem 0;
+        font-size: 1rem !important; 
+        line-height: 1.4 !important; 
     }
 
-    .video-overlay-text { 
-        bottom: 3rem; 
-        left: 1.5rem; 
+    .feature-quote-box p {
+        font-size: 1rem !important; 
+        line-height: 1.4 !important; 
+        margin-bottom: 0.8rem;
     }
+}
+.yt-promo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: fit-content;
+}
+
+.yt-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.yt-promo-btn:hover {
+    background-color: #FF0000; /* YouTube Red */
+    border-color: #FF0000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+}
+
+.yt-promo-btn:hover .yt-icon {
+    transform: scale(1.1);
+}
+.feature-quote-box {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 100%);
+    border-left: 3px solid #ffffff;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0 1.5rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    max-width: 55rem;
+}
+
+.feature-quote-box p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85); 
+    margin: 0 0 1rem 0;
+}
+
+.feature-quote-box p.quote-credits {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.02em;
 }

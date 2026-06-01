@@ -6,7 +6,10 @@
     --accent-vibrant: #2979FF; 
 }
 
-
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
 html { scroll-behavior: smooth; }
 
 * {
@@ -294,6 +297,7 @@ footer a { color: #ffffff; text-decoration: underline; }
         transform: translateY(10px);
     }
 }
-#main-content {
-    scroll-margin-top: 8rem; 
+#featured-content {
+    scroll-margin-top: 4.5rem; 
 }
+
