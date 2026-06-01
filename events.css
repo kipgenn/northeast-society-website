@@ -1,6 +1,6 @@
-/* =========================================
+/*  
    EVENTS HERO PARALLAX
-   ========================================= */
+     */
 .events-hero {
     background: linear-gradient(135deg, var(--text-main), #1e293b);
     color: white;
@@ -37,9 +37,9 @@
     letter-spacing: -0.03em;
 }
 
-/* =========================================
+/*  
    EVENTS DASHBOARD LAYOUT
-   ========================================= */
+     */
 .event-dashboard-wrapper {
     max-width: 75rem;
     margin: 0 auto;
@@ -101,9 +101,9 @@
     font-weight: 800;
 }
 
-/* =========================================
+/*  
    REPORT CARD STYLES
-   ========================================= */
+     */
 .dashboard-view {
     padding: 0;
     margin: 0;
@@ -187,9 +187,9 @@
     margin-bottom: 0.5rem;
 }
 
-/* =========================================
+/*  
    MOBILE RESPONSIVENESS
-   ========================================= */
+     */
 @media (max-width: 64rem) {
     .event-dashboard-wrapper {
         grid-template-columns: 1fr;

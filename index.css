@@ -175,9 +175,9 @@ body, html {
     pointer-events: none;
 }
 
-/* -----------------------------------------
-   CSP FIX: SQUARE BENTO CARD ALIGNMENT
------------------------------------------ */
+/* 
+  SQUARE BENTO CARD ALIGNMENT
+ */
 .bento-card.bento-square .bento-content {
     justify-content: center;
     align-items: center;

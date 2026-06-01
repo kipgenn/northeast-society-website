@@ -41,9 +41,9 @@ function onPlayerReady(event) {
     const iconVol = document.getElementById('icon-vol');
     const iconMute = document.getElementById('icon-mute');
 
-    // ==========================================
+    //  
     // THE MASTER TIMER LOGIC (Mobile Fix)
-    // ==========================================
+    //  
     let controlsTimeout;
     const ytContainer = document.querySelector('.custom-yt-container');
 
@@ -155,7 +155,7 @@ function onPlayerReady(event) {
                     document.msExitFullscreen();
                 }
             }
-            wakeControls(); // Reset timer
+            wakeControls(); //Reset timer
         });
     }
 
@@ -185,7 +185,7 @@ function onPlayerReady(event) {
                 iconPlay.classList.add('hidden');
                 iconPause.classList.remove('hidden');
             }
-            wakeControls(); // Reset timer
+            wakeControls(); //Reset timer
         });
     }
 }

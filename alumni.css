@@ -440,16 +440,16 @@ footer a {
     font-size: 1.1rem;
     max-width: 400px;
 }
-/* Add this to allow the expansion */
+
 .alumni-quote {
     transition: max-height 0.3s ease;
 }
 
 .alumni-quote.expanded {
-    display: block !important; /* Overrides the webkit-box clamp */
+    display: block !important; /* overriding the webkit-box clamp */
 }
 
-/* The button styling */
+/* button styling */
 .read-more-btn {
     background: none;
     border: none;

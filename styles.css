@@ -158,7 +158,7 @@ header.header-scrolled .g1 img {
 
 /*                                          
    UTILITIES & ANIMATIONS
-                                             */
+*/
 .heritage-melt { background: linear-gradient(180deg, #ffffff 0%, #f9fafb 15%, #f9fafb 100%); }
 
 
@@ -195,9 +195,9 @@ footer p { font-size: 0.9rem; opacity: 0.8; color: #ffffff; margin-bottom: 0.5re
 footer a { color: #ffffff; text-decoration: underline; }
 
 
-/* =========================================
+/*  
    GLOBAL MOBILE RESPONSIVENESS
-   ========================================= */
+     */
 @media (max-width: 48rem) {
     header { 
         padding: 0.8rem 1.2rem; 
@@ -217,9 +217,9 @@ footer a { color: #ffffff; text-decoration: underline; }
         object-position: 75% center; 
     } 
 }
-/* =========================================
+/*  
    ACCESSIBILITY & PERFORMANCE UPGRADES
-   ========================================= */
+     */
 @media (prefers-reduced-motion: reduce) {
 
     .marquee-track {

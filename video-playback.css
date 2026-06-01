@@ -64,9 +64,9 @@
     margin: 0 auto;
 }
 
-/* =========================================
+/*  
    3. IFRAME & VISUAL OVERLAYS
-   ========================================= */
+     */
 #alumni-video {
     position: absolute;
     top: 0;
@@ -131,9 +131,9 @@
     100% { opacity: 0; visibility: hidden; }
 }
 
-/* =========================================
+/*  
    4. CUSTOM YOUTUBE CONTROLS
-   ========================================= */
+     */
 .yt-controls {
     position: absolute;
     bottom: 0;
@@ -225,9 +225,9 @@
     font-family: "Roboto", sans-serif;
 }
 
-/* =========================================
+/*  
    5. CLICK-TO-PLAY SHIELD & UI WAKEUP
-   ========================================= */
+     */
 .video-click-overlay {
     position: absolute;
     top: 0;
@@ -243,9 +243,9 @@
     opacity: 1;
 }
 
-/* =========================================
+/*  
    6. FULLSCREEN MODE OVERRIDES
-   ========================================= */
+     */
 .custom-yt-container:fullscreen {
     border-radius: 0;
     max-width: 100%;
@@ -256,9 +256,9 @@
     max-width: 100%;
 }
 
-/* =========================================
+/*  
    7. MOBILE RESPONSIVENESS
-   ========================================= */
+     */
 @media (max-width: 768px) {
  
     .video-breakout-section {
