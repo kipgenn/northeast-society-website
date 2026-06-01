@@ -41,20 +41,19 @@ function onPlayerReady(event) {
     const iconVol = document.getElementById('icon-vol');
     const iconMute = document.getElementById('icon-mute');
 
-    //  
-    // THE MASTER TIMER LOGIC (Mobile Fix)
-    //  
+      
+    // timer logic 
     let controlsTimeout;
     const ytContainer = document.querySelector('.custom-yt-container');
 
-    // This function wakes the UI and sets a 3-second timer to hide it again
+    // wakes up the ui for 3 seconds
     function wakeControls() {
         if (!ytContainer) return;
         ytContainer.classList.add('force-controls');
         clearTimeout(controlsTimeout);
         
         controlsTimeout = setTimeout(() => {
-            // Only hide the controls if the video is actually playing
+            // only hide controls if the video is actually playing
             if (player && player.getPlayerState() == YT.PlayerState.PLAYING) {
                 ytContainer.classList.remove('force-controls');
             }
@@ -86,7 +85,7 @@ function onPlayerReady(event) {
         wakeControls(); // Reset timer
     });
 
-    // Mute / Unmute Toggle
+    // mute/unmute toggle
     muteBtn.addEventListener('click', () => {
         if (player.isMuted()) {
             player.unMute();
@@ -118,7 +117,7 @@ function onPlayerReady(event) {
     
     timeUpdater = setInterval(updateProgressBar, 100);
 
-    // Seek Logic (Dragging the slider)
+    // Dragging the slider
     seekSlider.addEventListener('input', () => {
         const seekTo = seekSlider.value;
         player.seekTo(seekTo, true);
@@ -128,7 +127,7 @@ function onPlayerReady(event) {
             const percentage = (seekTo / total) * 100;
             progressFill.style.width = `${percentage}%`;
         }
-        wakeControls(); // Reset timer
+        wakeControls(); //Reset timer
     });
 
     // Fullscreen Logic
