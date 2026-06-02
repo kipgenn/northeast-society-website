@@ -21,7 +21,6 @@ p, a, span, div {
     font-family: inherit;
 }
 
-/* --- FIX 1: Slide-down header --- */
 .floating-header {
     position: fixed;
     top: -150px;
@@ -38,7 +37,6 @@ p, a, span, div {
     top: 0; 
 }
 
-/* --- FIX 2: Dark text for Alumni page header --- */
 #main-nav .g1 h1, #main-nav .g1 .nav-title { 
     color: var(--text-main) !important; 
 }

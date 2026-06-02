@@ -17,7 +17,7 @@ p, a, span, div {
     font-family: inherit;
 }
 
-/* FULLSCREEN TEXT HERO (Aligned with script.js) */
+
 .hero-text-fullscreen {
     min-height: 80vh;
     display: flex;
@@ -383,4 +383,17 @@ p, a, span, div {
         margin-left: 0;
         width: 100%;
     }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0px !important; 
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; 
 }

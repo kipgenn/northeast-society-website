@@ -1,15 +1,18 @@
 // 1. INITIALIZATION & LOADER
 (function () {
-    var loaderHTML = `
+var loaderHTML = `
         <div id="page-loader">
             <div class="loader-inner">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo" class="loader-logo">
+                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
                 <div class="loader-wordmark">
-                    <span class="loader-title">NORTHEAST SOCIETY</span>
-                    <span class="loader-sub">IIT Delhi</span>
-                </div>
-                <div class="loader-bar-track">
-                    <div class="loader-bar-fill"></div>
+                    <div class="loader-title">
+                        ${"NORTHEAST SOCIETY".split('').map((c, i) => 
+                            c === ' ' 
+                            ? `<span class="letter space" style="animation-delay: ${i * 0.08}s">&nbsp;</span>` 
+                            : `<span class="letter" style="animation-delay: ${i * 0.08}s">${c}</span>`
+                        ).join('')}
+                    </div>
+                    <div class="loader-sub">IIT Delhi</div>
                 </div>
             </div>
         </div>`;
@@ -27,17 +30,51 @@
     }
 
     var minDisplayMs = 1200;
-    var pageLoaded = false;
+    var imagesLoaded = false;
     var minTimeMet = false;
 
     function tryDismiss() {
-        if (pageLoaded && minTimeMet) dismissLoader();
+        if (imagesLoaded && minTimeMet) dismissLoader();
     }
 
-    window.addEventListener('load', function () {
-        pageLoaded = true;
-        tryDismiss();
-    });
+    function checkAllImages() {
+        const images = Array.from(document.images);
+        let loadedCount = 0;
+
+        if (images.length === 0) {
+            imagesLoaded = true;
+            tryDismiss();
+            return;
+        }
+
+        images.forEach(img => {
+            if (img.complete) {
+                loadedCount++;
+            } else {
+                img.addEventListener('load', () => {
+                    loadedCount++;
+                    if (loadedCount === images.length) {
+                        imagesLoaded = true;
+                        tryDismiss();
+                    }
+                }, { once: true });
+                img.addEventListener('error', () => {
+                    loadedCount++; 
+                    if (loadedCount === images.length) {
+                        imagesLoaded = true;
+                        tryDismiss();
+                    }
+                }, { once: true });
+            }
+        });
+
+        if (loadedCount === images.length) {
+            imagesLoaded = true;
+            tryDismiss();
+        }
+    }
+
+    window.addEventListener('load', checkAllImages);
 
     setTimeout(function () {
         minTimeMet = true;
@@ -46,14 +83,11 @@
 
     setTimeout(function () {
         if (!loader.classList.contains('loader-hidden')) dismissLoader();
-    }, 6000);
+    }, 10000);
 })();
 
-
-// 2. UI UTILITIES (Nav, Filters, Lightbox)
+// 2. UI UTILITIES
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // Read More Button
     const content = document.getElementById('pres-text-content');
     const btn = document.getElementById('read-more-btn');
     if (content && btn) {
@@ -67,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Mobile Navigation
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNav = document.getElementById('mobile-nav');
     if (hamburgerBtn && mobileNav) {
@@ -82,18 +115,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-// Batch Timeline Logic
     const timelineBtns = document.querySelectorAll('.timeline-year');
     const batchSections = document.querySelectorAll('.batch-section');
-    
     if (timelineBtns.length > 0 && batchSections.length > 0) {
         timelineBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active states
                 timelineBtns.forEach(b => b.classList.remove('active'));
                 batchSections.forEach(s => s.classList.remove('active'));
                 
-                // Set new active state
                 this.classList.add('active');
                 const targetYear = this.getAttribute('data-year');
                 const targetSection = document.getElementById('batch-' + targetYear);
@@ -102,14 +131,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     targetSection.classList.add('active');
                 }
                 
-                // Center the clicked year in the track
                 this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
         });
     }
 
-    // Generic Lightbox Closure
-const lightbox = document.getElementById('gallery-lightbox');
+    const lightbox = document.getElementById('gallery-lightbox');
     const lightboxImg = document.getElementById('lightbox-image');
     const closeLightbox = document.querySelector('.lightbox-close');
 
@@ -132,7 +159,6 @@ const lightbox = document.getElementById('gallery-lightbox');
         });
     }
 
-    // Year Accordion Toggles
     const yearToggles = document.querySelectorAll('.year-toggle');
     if (yearToggles.length > 0) {
         yearToggles.forEach(toggle => {
@@ -144,10 +170,10 @@ const lightbox = document.getElementById('gallery-lightbox');
             });
         });
     }
+});
 
-    // ==========================================
-    // 3. CLOUDINARY GALLERY & STAGGER REVEAL
-    // ==========================================
+// 3. CLOUDINARY GALLERY & STAGGER REVEAL
+document.addEventListener("DOMContentLoaded", function() {
     const CLOUD_NAME = 'dniy8inc1';
     const TAG = 'nes_gallery';
     const apiUrl = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json?t=${Date.now()}`;
@@ -209,7 +235,7 @@ const lightbox = document.getElementById('gallery-lightbox');
                 galleryItem.dataset.gridSrc = gridImageUrl;
                 galleryItem.dataset.fullSrc = fullImageUrl;
 
-                    galleryItem.addEventListener('click', () => {
+                galleryItem.addEventListener('click', () => {
                     const dynamicLightbox = document.getElementById('gallery-lightbox');
                     const dynamicLightboxImg = document.getElementById('lightbox-image');
                     
@@ -237,7 +263,6 @@ const lightbox = document.getElementById('gallery-lightbox');
     }
 });
 
-// Carousel Helper
 function scrollCarousel(direction, trackId) {
     const track = document.getElementById(trackId);
     if (track) {
@@ -246,9 +271,7 @@ function scrollCarousel(direction, trackId) {
     }
 }
 
-// ==========================================
-// 4. MAGNETIC CURSOR (OPTIMIZED)
-// ==========================================
+// 4. MAGNETIC CURSOR
 document.addEventListener("DOMContentLoaded", function() {
     if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
         const cursor = document.createElement('div');
@@ -269,7 +292,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!isCursorTicking) {
                 window.requestAnimationFrame(() => {
                     if (activeTarget && targetRect) {
-                        // Use the cached targetRect instead of recalculating
                         const x = targetRect.left + targetRect.width / 2;
                         const y = targetRect.top + targetRect.height / 2;
                         
@@ -294,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (target) {
                 cursor.classList.add('hover-image');
                 activeTarget = target;
-                // CACHE THE GEOMETRY ONCE WHEN THE MOUSE ENTERS
                 targetRect = target.getBoundingClientRect();
                 target.style.transition = 'transform 0.1s linear';
             }
@@ -305,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (target) {
                 cursor.classList.remove('hover-image');
                 activeTarget = null;
-                targetRect = null; // CLEAR THE CACHE
+                targetRect = null;
                 target.style.transform = 'translate(0px, 0px)';
                 target.style.transition = 'transform 0.3s ease';
             }
@@ -313,8 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// 5. SMOOTH PARALLAX ENGINE (LERP)
-
+// 5. SMOOTH PARALLAX ENGINE
 let targetScroll = window.scrollY;
 let currentScroll = window.scrollY;
 
@@ -323,7 +343,6 @@ document.addEventListener("scroll", function() {
 }, { passive: true });
 
 function renderParallax() {
-    // Linear Interpolation (Friction curve: 0.08)
     currentScroll += (targetScroll - currentScroll) * 0.08; 
     
     const parallaxSections = document.querySelectorAll('.hero-fullscreen');
@@ -358,6 +377,7 @@ function renderParallax() {
     window.requestAnimationFrame(renderParallax);
 }
 window.requestAnimationFrame(renderParallax);
+
 document.addEventListener("DOMContentLoaded", function() {
     const bentoCards = document.querySelectorAll('.bento-card');
     
@@ -392,11 +412,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-/* /* ==========================================
-   1. FOOLPROOF GLOBAL HEADER INJECTION
-   ========================================== */
+// 6. GLOBAL HEADER INJECTION
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. The perfect HTML for your header
     const globalHeaderHTML = `
         <header id="main-nav">
             <div class="g1">
@@ -410,11 +427,8 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         </header>
     `;
-
-    // 2. Inject it automatically at the start of the body
     document.body.insertAdjacentHTML('afterbegin', globalHeaderHTML);
 
-    // 3. The universal scroll logic
     const headerElement = document.getElementById('main-nav');
     
     window.addEventListener('scroll', () => {
@@ -425,8 +439,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-// Dynamic Text Hero Scroll Animation
 
 window.addEventListener('scroll', () => {
     const dynamicText = document.querySelector('.dynamic-text-container');
@@ -442,16 +454,20 @@ window.addEventListener('scroll', () => {
     }
 });
 
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+        }
+    });
+});
+
 document.querySelectorAll('.reveal-on-scroll').forEach(el => {
     scrollObserver.observe(el);
 });
 
-/* ==========================================
-   EVENTS PAGE: SIDEBAR TABS & PARALLAX
-   ========================================== */
+// 7. EVENTS PAGE: SIDEBAR TABS & PARALLAX
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // --- 1. SIDEBAR TAB SWITCHER ---
     const sidebarBtns = document.querySelectorAll('.sidebar-btn');
     const batchSections = document.querySelectorAll('.batch-section');
 
@@ -468,8 +484,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 if (targetSection) {
                     targetSection.classList.add('active');
-                    
-                    // Optional: Smoothly scroll to top of the report card on mobile
                     if (window.innerWidth <= 1024) {
                         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
@@ -478,7 +492,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 2. HERO PARALLAX SCROLL ---
     const eventsHero = document.querySelector('.events-hero');
     
     if (eventsHero) {
@@ -507,6 +520,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
 const dropdown = document.getElementById('gallery-year-dropdown');
 const dropdownBtn = document.getElementById('dropdown-btn');
 const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -543,6 +557,7 @@ if (dropdown && dropdownBtn) {
         });
     });
 }
+
 const mainHeader = document.querySelector('header');
 
 if (mainHeader) {
@@ -554,27 +569,22 @@ if (mainHeader) {
         }
     });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
     const quotes = document.querySelectorAll(".alumni-quote");
 
     quotes.forEach(quote => {
-        // Check if the content is taller than the container (overflowing)
         if (quote.scrollHeight > quote.clientHeight) {
-            // Create the button
             const btn = document.createElement("button");
             btn.innerText = "View More";
             btn.className = "read-more-btn";
 
-            // Add toggle logic
             btn.addEventListener("click", () => {
                 quote.classList.toggle("expanded");
                 btn.innerText = quote.classList.contains("expanded") ? "View Less" : "View More";
             });
 
-            // Insert button after the quote div
             quote.parentNode.insertBefore(btn, quote.nextSibling);
         }
     });
 });
-
-

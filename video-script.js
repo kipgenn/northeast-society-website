@@ -1,4 +1,4 @@
-// 1. Load the YouTube IFrame API dynamically
+// 1.load yt
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -9,7 +9,7 @@ var timeUpdater;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player-node', {
-        videoId: '-SL63myuzIE', 
+        videoId: '-379xbYLZEEY', 
         playerVars: {
             'autoplay': 1,
             'controls': 0, 
@@ -42,7 +42,7 @@ function onPlayerReady(event) {
     const iconMute = document.getElementById('icon-mute');
 
       
-    // timer logic 
+    // timer 
     let controlsTimeout;
     const ytContainer = document.querySelector('.custom-yt-container');
 
