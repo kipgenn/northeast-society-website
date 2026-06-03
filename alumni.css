@@ -138,13 +138,13 @@ main {
 }
 
 .batch-section.active { 
-    display: block; 
+    display: block;
 }
 
-/* MODIFIED TO FLEXBOX TO CENTER ORPHANED ROWS */
+
 .alumni-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
     justify-content: center;
     gap: 2rem;
     max-width: 85rem;
@@ -155,7 +155,7 @@ main {
 }
 
 .alumni-card {
-    /* Calculates exactly 1/3 of the container width minus the 2rem gap */
+
     width: calc(33.333% - 1.34rem); 
     background: #ffffff;
     border-radius: 1rem;
@@ -222,7 +222,7 @@ main {
 }
 
 .alumni-quote {
-    font-size: 0.95rem;
+    font-size: 1.2 rem;
     font-family: 'Georgia', serif;
     font-style: italic;
     color: #4b5563;
@@ -267,7 +267,6 @@ footer a {
     }
     
     .alumni-card {
-        /* Scales to 2 columns on tablets */
         width: calc(50% - 1.25rem); 
     }
 
@@ -288,7 +287,7 @@ footer a {
     }
 
     .alumni-quote {
-        font-size: 0.95rem;
+        font-size: 1.2 rem;
         font-family: 'Georgia', serif;
         font-style: italic;
         color: #4b5563;
@@ -318,7 +317,6 @@ footer a {
     }
 
     .alumni-card {
-        /* Scales to 1 centered column on phones */
         width: 100%;
         max-width: 320px;
         margin: 0 auto;
@@ -341,7 +339,7 @@ footer a {
     }
 
     .alumni-quote {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         line-height: 1.7;
         margin-top: 1.5rem;
     }
@@ -444,7 +442,7 @@ footer a {
 }
 
 .alumni-quote.expanded {
-    display: block !important; /* overriding the webkit-box clamp */
+    display: block !important; 
 }
 
 /* button styling */
