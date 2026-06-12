@@ -7,9 +7,11 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    /* Hides scrollbar in Firefox */
     scrollbar-width: none; 
 }
 
+/* Hides scrollbar in Chrome, Safari, and Edge */
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;

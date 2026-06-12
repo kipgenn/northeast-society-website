@@ -277,7 +277,7 @@ footer a { color: #ffffff; text-decoration: underline; }
     header .g1 img { height: 48px; border-radius: 6px; }
     header .g1 h1 { font-size: 1.3rem; }
     header .g1 h2 { font-size: 0.85rem; }
-    .hero-bg { object-position: 67% center; } 
+    .hero-bg { object-position: 75% center; } 
 }
 
 @media (prefers-reduced-motion: reduce) {

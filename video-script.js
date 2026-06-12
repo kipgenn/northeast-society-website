@@ -8,9 +8,8 @@ var player;
 var timeUpdater; 
 
 function onYouTubeIframeAPIReady() {
-    
     player = new YT.Player('youtube-player-node', {
-        videoId: '-SL63myuzIE', 
+        videoId: '379xbYLZEEY', 
         playerVars: {
             'autoplay': 1,
             'controls': 0, 
