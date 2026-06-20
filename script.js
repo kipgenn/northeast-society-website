@@ -1,90 +1,106 @@
-// 1. INITIALIZATION & LOADER
-(function () {
-var loaderHTML = `
-        <div id="page-loader">
-            <div class="loader-inner">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
-                <div class="loader-wordmark">
-                    <div class="loader-title">
-                        ${"NORTHEAST SOCIETY".split('').map((c, i) => 
-                            c === ' ' 
-                            ? `<span class="letter space" style="animation-delay: ${i * 0.08}s">&nbsp;</span>` 
-                            : `<span class="letter" style="animation-delay: ${i * 0.08}s">${c}</span>`
-                        ).join('')}
-                    </div>
-                    <div class="loader-sub">IIT Delhi</div>
-                </div>
-            </div>
-        </div>`;
-    document.body.insertAdjacentHTML('afterbegin', loaderHTML);
 
-    var loader = document.getElementById('page-loader');
-    document.body.style.overflow = 'hidden';
 
-    function dismissLoader() {
-        document.body.style.overflow = '';
-        loader.classList.add('loader-hidden');
-        loader.addEventListener('transitionend', function () {
-            if (loader.parentNode) loader.parentNode.removeChild(loader);
-        }, { once: true });
-    }
+//if youre seeing this please dont inject anything please please pleaese please im not paid for this please please
 
-    var minDisplayMs = 1200;
-    var imagesLoaded = false;
-    var minTimeMet = false;
 
-    function tryDismiss() {
-        if (imagesLoaded && minTimeMet) dismissLoader();
-    }
 
-    function checkAllImages() {
-        const images = Array.from(document.images);
-        let loadedCount = 0;
 
-        if (images.length === 0) {
-            imagesLoaded = true;
-            tryDismiss();
-            return;
-        }
 
-        images.forEach(img => {
-            if (img.complete) {
-                loadedCount++;
-            } else {
-                img.addEventListener('load', () => {
-                    loadedCount++;
-                    if (loadedCount === images.length) {
-                        imagesLoaded = true;
-                        tryDismiss();
-                    }
-                }, { once: true });
-                img.addEventListener('error', () => {
-                    loadedCount++; 
-                    if (loadedCount === images.length) {
-                        imagesLoaded = true;
-                        tryDismiss();
-                    }
-                }, { once: true });
-            }
-        });
 
-        if (loadedCount === images.length) {
-            imagesLoaded = true;
-            tryDismiss();
-        }
-    }
 
-    window.addEventListener('load', checkAllImages);
 
-    setTimeout(function () {
-        minTimeMet = true;
-        tryDismiss();
-    }, minDisplayMs);
 
-    setTimeout(function () {
-        if (!loader.classList.contains('loader-hidden')) dismissLoader();
-    }, 10000);
-})();
+
+
+
+
+// //loader
+// (function () {
+// var loaderHTML = `
+//         <div id="page-loader">
+//             <div class="loader-inner">
+//                 <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
+//                 <div class="loader-wordmark">
+//                     <div class="loader-title">
+//                         ${"NORTHEAST SOCIETY".split('').map((c, i) => 
+//                             c === ' ' 
+//                             ? `<span class="letter space" style="animation-delay: ${i * 0.08}s">&nbsp;</span>` 
+//                             : `<span class="letter" style="animation-delay: ${i * 0.08}s">${c}</span>`
+//                         ).join('')}
+//                     </div>
+//                     <div class="loader-sub">IIT Delhi</div>
+//                 </div>
+//             </div>
+//         </div>`;
+//     document.body.insertAdjacentHTML('afterbegin', loaderHTML);
+
+//     var loader = document.getElementById('page-loader');
+//     document.body.style.overflow = 'hidden';
+
+//     function dismissLoader() {
+//         document.body.style.overflow = '';
+//         loader.classList.add('loader-hidden');
+//         loader.addEventListener('transitionend', function () {
+//             if (loader.parentNode) loader.parentNode.removeChild(loader);
+//         }, { once: true });
+//     }
+
+//     var minDisplayMs = 1200;
+//     var imagesLoaded = false;
+//     var minTimeMet = false;
+
+//     function tryDismiss() {
+//         if (imagesLoaded && minTimeMet) dismissLoader();
+//     }
+
+//     function checkAllImages() {
+//         const images = Array.from(document.images);
+//         let loadedCount = 0;
+
+//         if (images.length === 0) {
+//             imagesLoaded = true;
+//             tryDismiss();
+//             return;
+//         }
+
+//         images.forEach(img => {
+//             if (img.complete) {
+//                 loadedCount++;
+//             } else {
+//                 img.addEventListener('load', () => {
+//                     loadedCount++;
+//                     if (loadedCount === images.length) {
+//                         imagesLoaded = true;
+//                         tryDismiss();
+//                     }
+//                 }, { once: true });
+//                 img.addEventListener('error', () => {
+//                     loadedCount++; 
+//                     if (loadedCount === images.length) {
+//                         imagesLoaded = true;
+//                         tryDismiss();
+//                     }
+//                 }, { once: true });
+//             }
+//         });
+
+//         if (loadedCount === images.length) {
+//             imagesLoaded = true;
+//             tryDismiss();
+//         }
+//     }
+
+//     window.addEventListener('load', checkAllImages);
+
+//     setTimeout(function () {
+//         minTimeMet = true;
+//         tryDismiss();
+//     }, minDisplayMs);
+
+//     setTimeout(function () {
+//         if (!loader.classList.contains('loader-hidden')) dismissLoader();
+//     }, 10000);
+// })();
 
 // 2. UI UTILITIES
 document.addEventListener("DOMContentLoaded", function() {
@@ -417,25 +433,63 @@ document.addEventListener("DOMContentLoaded", function() {
     const globalHeaderHTML = `
         <header id="main-nav">
             <div class="g1">
-                <a href="index.html">
-                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 1rem;">
+                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo" style="width: 50px; border-radius: 8px;">
                     <div>
-                        <h1 style="color: #ffffff !important;">Northeast Society</h1>
-                        <h2 style="color: #cbd5e1 !important;">IIT Delhi</h2>
+                        <h1 style="color: #ffffff !important; font-size: 1.2rem; margin: 0;">Northeast Society</h1>
+                        <h2 style="color: #cbd5e1 !important; font-size: 0.85rem; margin: 0;">IIT Delhi</h2>
                     </div>
                 </a>
             </div>
+            
+            <nav class="desktop-nav">
+                <a href="about.html">About</a>
+                <a href="events.html">Events</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="teams.html">Team</a>
+                <a href="alumni.html">Alumni</a>
+            </nav>
+
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </header>
+
+        <div class="mobile-nav-overlay">
+            <nav class="mobile-nav-links">
+                <a href="about.html">About</a>
+                <a href="events.html">Events</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="teams.html">Team</a>
+                <a href="alumni.html">Alumni</a>
+            </nav>
+        </div>
     `;
     document.body.insertAdjacentHTML('afterbegin', globalHeaderHTML);
 
     const headerElement = document.getElementById('main-nav');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const overlay = document.querySelector('.mobile-nav-overlay');
     
+    // Scroll logic
     window.addEventListener('scroll', () => {
         if (window.scrollY > 150) {
             headerElement.classList.add('header-scrolled');
         } else {
             headerElement.classList.remove('header-scrolled');
+        }
+    });
+
+    // Hamburger Menu Logic
+    menuBtn.addEventListener('click', () => {
+        overlay.classList.toggle('active');
+        // Swaps the icon from 3 lines to an 'X' when open
+        if(overlay.classList.contains('active')) {
+            menuBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            document.body.style.overflow = 'hidden'; // Prevents scrolling while menu is open
+        } else {
+            menuBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+            document.body.style.overflow = ''; 
         }
     });
 });
@@ -586,5 +640,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
             quote.parentNode.insertBefore(btn, quote.nextSibling);
         }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.25 // Triggers when 25% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach((el) => {
+        observer.observe(el);
+    });
+    document.querySelectorAll('.scroll-reveal, .reveal-on-scroll').forEach((el) => {
+        observer.observe(el);
     });
 });

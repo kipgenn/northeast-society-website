@@ -1,6 +1,5 @@
-
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased; 
     -moz-osx-font-smoothing: grayscale;
     color: #4b5563; 
@@ -8,7 +7,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     color: #1a237e; 
     margin: 0;
 }
@@ -16,7 +15,6 @@ h1, h2, h3, h4, h5, h6 {
 p, a, span, div {
     font-family: inherit;
 }
-
 
 .hero-text-fullscreen {
     min-height: 80vh;
@@ -98,6 +96,7 @@ p, a, span, div {
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    background-color: transparent; 
 }
 
 .story-image img {
@@ -126,6 +125,9 @@ p, a, span, div {
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     border: 1px solid rgba(0,0,0,0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .pillar-card:hover {
@@ -191,22 +193,25 @@ p, a, span, div {
 }
 
 .roots-content {
-    max-width: 50rem;
+    max-width: 65rem; 
     margin: 0 auto;
     text-align: center;
 }
 
-.roots-content h2 {
-    font-size: 2.5rem;
-    color: var(--text-main);
-    margin-bottom: 1.5rem;
-}
-
 .roots-content p {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 2vw, 1.6rem); 
     line-height: 1.8;
     color: #555;
 }
+
+.roots-content h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); 
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+}
+
 
 .legacy-grid {
     display: grid;
@@ -273,11 +278,14 @@ p, a, span, div {
     .story-image { order: -1; }
     .about-section { padding: 4rem 2rem; }
 }
-/* HERITAGE GALLERY LAYOUT */
+
+
 .heritage-gallery {
     padding: 8rem 2rem;
-    background-color: #f9fafb;
+    background-color: #ffffff;
     overflow-x: hidden;
+    max-width: 100%;
+    margin: 0; 
 }
 
 .gallery-heading {
@@ -315,6 +323,7 @@ p, a, span, div {
     box-shadow: 0 30px 60px -15px rgba(26, 35, 126, 0.2);
     position: relative;
     z-index: 1;
+    margin-bottom: 0.5rem;
     
     transform: translateZ(0); 
     backface-visibility: hidden;
@@ -397,3 +406,19 @@ html, body {
     width: 100%;
     overflow-x: hidden; 
 }
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1.is-revealed { transition-delay: 0.2s; }
+.delay-2.is-revealed { transition-delay: 0.4s; }
+.delay-3.is-revealed { transition-delay: 0.6s; }

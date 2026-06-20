@@ -1,3 +1,12 @@
+
+
+// if youre seeing this please dont inject anything 
+//  please please pleaese please 
+//  im not paid enough to get a headache for it
+//  please please 
+
+
+
 // 1.load yt
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
