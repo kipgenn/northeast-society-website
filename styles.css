@@ -363,7 +363,7 @@ footer a { color: #ffffff; text-decoration: underline; }
     left: 0;
     width: 0%;
     height: 2px;
-    background-color: var(--accent); /* Uses your existing blue */
+    background-color: var(--accent);
     transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -377,7 +377,6 @@ footer a { color: #ffffff; text-decoration: underline; }
 .mobile-nav-overlay { display: none; }
 
 @media (max-width: 768px) {
-=
     #main-nav {
         flex-direction: row !important;
         justify-content: space-between !important;

@@ -13,94 +13,98 @@
 
 
 
+(function () {
+    if (sessionStorage.getItem('hasLoadedBefore')) {
+        return;
+    }
 
-// //loader
-// (function () {
-// var loaderHTML = `
-//         <div id="page-loader">
-//             <div class="loader-inner">
-//                 <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
-//                 <div class="loader-wordmark">
-//                     <div class="loader-title">
-//                         ${"NORTHEAST SOCIETY".split('').map((c, i) => 
-//                             c === ' ' 
-//                             ? `<span class="letter space" style="animation-delay: ${i * 0.08}s">&nbsp;</span>` 
-//                             : `<span class="letter" style="animation-delay: ${i * 0.08}s">${c}</span>`
-//                         ).join('')}
-//                     </div>
-//                     <div class="loader-sub">IIT Delhi</div>
-//                 </div>
-//             </div>
-//         </div>`;
-//     document.body.insertAdjacentHTML('afterbegin', loaderHTML);
+    var loaderHTML = `
+        <div id="page-loader">
+            <div class="loader-inner">
+                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
+                <div class="loader-wordmark">
+                    <div class="loader-title">
+                        ${"NORTHEAST SOCIETY".split('').map((c, i) => 
+                            c === ' ' 
+                            ? `<span class="letter space" style="animation-delay: ${i * 0.08}s">&nbsp;</span>` 
+                            : `<span class="letter" style="animation-delay: ${i * 0.08}s">${c}</span>`
+                        ).join('')}
+                    </div>
+                    <div class="loader-sub">IIT Delhi</div>
+                </div>
+            </div>
+        </div>`;
+        
+    document.body.insertAdjacentHTML('afterbegin', loaderHTML);
 
-//     var loader = document.getElementById('page-loader');
-//     document.body.style.overflow = 'hidden';
+    var loader = document.getElementById('page-loader');
+    document.body.style.overflow = 'hidden';
 
-//     function dismissLoader() {
-//         document.body.style.overflow = '';
-//         loader.classList.add('loader-hidden');
-//         loader.addEventListener('transitionend', function () {
-//             if (loader.parentNode) loader.parentNode.removeChild(loader);
-//         }, { once: true });
-//     }
+    function dismissLoader() {
+        document.body.style.overflow = '';
+        loader.classList.add('loader-hidden');
+        sessionStorage.setItem('hasLoadedBefore', 'true');
+        loader.addEventListener('transitionend', function () {
+            if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, { once: true });
+    }
 
-//     var minDisplayMs = 1200;
-//     var imagesLoaded = false;
-//     var minTimeMet = false;
+    var minDisplayMs = 1200;
+    var imagesLoaded = false;
+    var minTimeMet = false;
 
-//     function tryDismiss() {
-//         if (imagesLoaded && minTimeMet) dismissLoader();
-//     }
+    function tryDismiss() {
+        if (imagesLoaded && minTimeMet) dismissLoader();
+    }
 
-//     function checkAllImages() {
-//         const images = Array.from(document.images);
-//         let loadedCount = 0;
+    function checkAllImages() {
+        const images = Array.from(document.images);
+        let loadedCount = 0;
 
-//         if (images.length === 0) {
-//             imagesLoaded = true;
-//             tryDismiss();
-//             return;
-//         }
+        if (images.length === 0) {
+            imagesLoaded = true;
+            tryDismiss();
+            return;
+        }
 
-//         images.forEach(img => {
-//             if (img.complete) {
-//                 loadedCount++;
-//             } else {
-//                 img.addEventListener('load', () => {
-//                     loadedCount++;
-//                     if (loadedCount === images.length) {
-//                         imagesLoaded = true;
-//                         tryDismiss();
-//                     }
-//                 }, { once: true });
-//                 img.addEventListener('error', () => {
-//                     loadedCount++; 
-//                     if (loadedCount === images.length) {
-//                         imagesLoaded = true;
-//                         tryDismiss();
-//                     }
-//                 }, { once: true });
-//             }
-//         });
+        images.forEach(img => {
+            if (img.complete) {
+                loadedCount++;
+            } else {
+                img.addEventListener('load', () => {
+                    loadedCount++;
+                    if (loadedCount === images.length) {
+                        imagesLoaded = true;
+                        tryDismiss();
+                    }
+                }, { once: true });
+                img.addEventListener('error', () => {
+                    loadedCount++; 
+                    if (loadedCount === images.length) {
+                        imagesLoaded = true;
+                        tryDismiss();
+                    }
+                }, { once: true });
+            }
+        });
 
-//         if (loadedCount === images.length) {
-//             imagesLoaded = true;
-//             tryDismiss();
-//         }
-//     }
+        if (loadedCount === images.length) {
+            imagesLoaded = true;
+            tryDismiss();
+        }
+    }
 
-//     window.addEventListener('load', checkAllImages);
+    window.addEventListener('load', checkAllImages);
 
-//     setTimeout(function () {
-//         minTimeMet = true;
-//         tryDismiss();
-//     }, minDisplayMs);
+    setTimeout(function () {
+        minTimeMet = true;
+        tryDismiss();
+    }, minDisplayMs);
 
-//     setTimeout(function () {
-//         if (!loader.classList.contains('loader-hidden')) dismissLoader();
-//     }, 10000);
-// })();
+    setTimeout(function () {
+        if (!loader.classList.contains('loader-hidden')) dismissLoader();
+    }, 10000);
+})();
 
 // 2. UI UTILITIES
 document.addEventListener("DOMContentLoaded", function() {
@@ -428,13 +432,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// 6. GLOBAL HEADER INJECTION
+//global header
 document.addEventListener("DOMContentLoaded", function() {
     const globalHeaderHTML = `
         <header id="main-nav">
             <div class="g1">
                 <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 1rem;">
-                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo" style="width: 50px; border-radius: 8px;">
+                    <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_120,q_auto,f_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NEO Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
                     <div>
                         <h1 style="color: #ffffff !important; font-size: 1.2rem; margin: 0;">Northeast Society</h1>
                         <h2 style="color: #cbd5e1 !important; font-size: 0.85rem; margin: 0;">IIT Delhi</h2>
@@ -471,7 +475,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const overlay = document.querySelector('.mobile-nav-overlay');
     
-    // Scroll logic
     window.addEventListener('scroll', () => {
         if (window.scrollY > 150) {
             headerElement.classList.add('header-scrolled');
