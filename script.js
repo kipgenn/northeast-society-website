@@ -1,17 +1,4 @@
-
-
 //if youre seeing this please dont inject anything please please pleaese please im not paid for this please please
-
-
-
-
-
-
-
-
-
-
-
 
 (function () {
     if (sessionStorage.getItem('hasLoadedBefore')) {
@@ -517,6 +504,9 @@ const scrollObserver = new IntersectionObserver((entries) => {
             entry.target.classList.add('revealed');
         }
     });
+}, {
+    rootMargin: "0px 0px 250px 0px",
+    threshold: 0.1
 });
 
 document.querySelectorAll('.reveal-on-scroll').forEach(el => {
@@ -649,8 +639,8 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function() {
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.25 // Triggers when 25% of the element is visible
+        rootMargin: '0px 0px 250px 0px',
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {

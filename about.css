@@ -109,6 +109,33 @@ p, a, span, div {
     gap: 4rem;
 }
 
+.top-row {
+    margin-bottom: 6rem;
+}
+
+.bottom-row {
+    display: block; 
+}
+
+.group-photo-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.group-photo-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 48px; 
+    filter: saturate(110%);
+    box-shadow: 0 30px 60px -15px rgba(26, 35, 126, 0.2);
+    margin-bottom: 0;
+    display: block;
+}
+
 .heritage-gallery .story-image {
     width: 60%;
     position: relative;
@@ -128,6 +155,15 @@ p, a, span, div {
     transform: translateZ(0); 
     backface-visibility: hidden;
     will-change: transform;
+}
+
+.image-description {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.spacing-top {
+    margin-top: 1.5rem;
 }
 
 .heritage-gallery .story-content {
@@ -159,57 +195,10 @@ p, a, span, div {
     width: 100%;
 }
 
-.story-intro {
-    background-color: #ffffff;
-    max-width: 100%; 
-    padding: 1rem 2rem 3rem 2rem; 
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    position: relative;
-    z-index: 5; 
-}
-
-.intro-card {
-    background: #ffffff;
-    padding: 4rem 3rem;
-    border-radius: 60px; 
-    box-shadow: 0 40px 100px -30px rgba(26, 35, 126, 0.1); 
-    border: 1px solid rgba(0, 0, 0, 0.05); 
-    max-width: 80rem; 
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.intro-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px; 
-    height: 100%;
-    background-color: var(--accent); 
-    border-radius: 60px 0 0 60px;
-}
-
-.story-intro .intro-card p {
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem); 
-    line-height: 1.4;
-    font-weight: 800;
-    color: var(--accent); 
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
-}
-
-.story-intro .intro-card p:last-child {
-    margin-bottom: 0;
-}
-
 .stats-container {
     background-color: var(--accent);
-    padding: 7rem 2rem 4rem 2rem; 
-    margin-top: -3rem; 
+    padding: 5rem 2rem 4rem 2rem; 
+    margin-top: 0; 
     color: white;
     text-align: center;
     position: relative;
@@ -383,6 +372,9 @@ p, a, span, div {
         flex-direction: column;
         gap: 0;
     }
+    .top-row {
+        margin-bottom: 4rem;
+    }
     .heritage-gallery .story-image,
     .heritage-gallery .story-content {
         width: 100%;
@@ -420,28 +412,13 @@ p, a, span, div {
     .story-grid { grid-template-columns: 1fr; }
     .story-image { order: -1; }
     
-    .story-intro { 
-        padding: 0.5rem 1.5rem 1rem 1.5rem; 
-    }
-    
-    .intro-card {
-        padding: 2.5rem 1.5rem;
+    .group-photo-wrapper img {
         border-radius: 30px;
-    }
-    
-    .intro-card::before {
-        border-radius: 30px 0 0 30px;
-        width: 6px;
-    }
-    
-    .story-intro .intro-card p {
-        font-size: clamp(1.3rem, 4vw, 1.6rem); 
-        margin-bottom: 1.5rem;
     }
     
     .stats-container {
         padding: 4rem 1.5rem 2.5rem 1.5rem;
-        margin-top: -1rem; 
+        margin-top: 0; 
     }
     
     .stats-grid { gap: 2rem; }
