@@ -8,7 +8,7 @@
     var loaderHTML = `
         <div id="page-loader">
             <div class="loader-inner">
-                <img src="https://res.cloudinary.com/dniy8inc1/image/upload/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
+               <img src="https://res.cloudinary.com/dniy8inc1/image/upload/w_150,f_auto,q_auto/v1780009978/neslogo_wqwnsd.jpg" alt="NES Logo" class="loader-logo">
                 <div class="loader-wordmark">
                     <div class="loader-title">
                         ${"NORTHEAST SOCIETY".split('').map((c, i) => 
