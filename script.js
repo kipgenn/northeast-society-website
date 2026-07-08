@@ -659,3 +659,15 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 });
+
+// Secret Background Preloader
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const bentoImages = document.querySelectorAll('.bento-img-bg');
+        
+        bentoImages.forEach(img => {
+            const secretLoader = new Image();
+            secretLoader.src = img.src; 
+        });
+    }, 2500); 
+});
